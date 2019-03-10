@@ -4,8 +4,27 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Ignore bundler config.
+/.bundle
 
-# ignore from https://github.com/github/gitignore/blob/master/Rails.gitignore
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+
+/node_modules
+/yarn-error.log
+
+/public/assets
+.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
 
 *.rbc
 capybara-*.html
@@ -32,30 +51,15 @@ config/master.key
 # TODO Comment out this rule if environment variables can be committed
 .env
 
-# Ignore bundler config.
+## Environment normalization:
 /.bundle
 /vendor/bundle
 
-# Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+# these should all be checked in to normalize the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
 
-# Ignore uploaded files in development
-/storage/*
-!/storage/.keep
-
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
-
-/public/assets
-.byebug_history
-
-# Ignore master key for decrypting credentials and more.
-/config/master.key
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
 
 # if using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components
@@ -65,6 +69,9 @@ bower.json
 # Ignore pow environment settings
 .powenv
 
+# Ignore Byebug command history file.
+.byebug_history
+
 # Ignore node_modules
 node_modules/
 
@@ -73,3 +80,11 @@ node_modules/
 /public/packs-test
 /public/assets
 
+# Ignore yarn files
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
