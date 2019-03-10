@@ -90,3 +90,101 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+
+## RUBYMINE
+.idea/
+# IDE junk
+*.iml
+
+# For MacOS:
+#
+.DS_Store
+
+
+# For TextMate
+#*.tmproj
+#tmtags
+
+# For emacs:
+#*~
+#\#*
+#.\#*
+
+# For vim:
+*.swp
+*~
+
+# For redcar:
+#.redcar
+
+# For rubinius:
+*.rbc
+
+## Temp files
+,*
+*.bak
+
+# My custom rules
+
+# Ruby Managers (lock down ruby version in Gemfile if you need to do so for a project)
+.rbenv
+.rbenv-version
+.ruby-gemset
+.ruby-version
+.rvmrc
+
+# Vagrant
+# Vagrantfile - unsure if I want to use an example and ignore this globally?
+.vagrant
+
+# output from nohup
+nohup.out
+
+# output from script
+typescript
+
+# Finger trouble with :w!
+1
+
+#  Thanks http://techportal.inviqa.com/2012/11/01/global-git-ignore/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+ 
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+*.zip
+
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+ 
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon
+Thumbs.db
+.tmtags
+tags
+vendor.tags
+tmtagsHistory
+*.sublime-project
+*.sublime-workspace
+
