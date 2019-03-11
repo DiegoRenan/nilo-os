@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :logged_in_user
+  before_action :correct_user,   only: [:edit, :update, :destroy]
 
 	def index
       @users = User.all
@@ -54,5 +55,10 @@ class UsersController < ApplicationController
           flash[:danger] = "Você não está logado."
           redirect_to login_url
         end
+      end
+
+      def correct_user
+        @user = User.find(params[:id])
+        redirect_to(root_url) unless current_user?(@user) || @user.whyzy_admin?
       end
 end
