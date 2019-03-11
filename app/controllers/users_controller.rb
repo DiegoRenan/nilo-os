@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	
+	before_action :logged_in_user
+
 	def index
       @users = User.all
     end
@@ -47,4 +48,11 @@ class UsersController < ApplicationController
   			params.require(:user).permit(:username, :name, :email, :password,
   				:password_confirmation, :picture)
   		end
+
+      def logged_in_user
+        unless logged_in?
+          flash[:danger] = "Você não está logado."
+          redirect_to login_url
+        end
+      end
 end
