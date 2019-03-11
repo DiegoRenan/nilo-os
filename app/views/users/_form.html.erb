@@ -2,9 +2,21 @@
     	
     	<%= render 'shared/error_messages', object: f.object %>
 
-    	<span class="picture">
-    		<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "btn btn-default"  %>
-  		</span>
+  		<div class="container">
+		    <div class="row">
+		      	<div class="col-4">
+	        		<span class="picture">
+						<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', 
+							class: "btn btn-default", 
+							:onchange => "readURL(this)"  %>
+					</span>
+				</div>
+				<div class="col-6">
+		        	<img id="img_prev" src="#" alt="your image" class="img-icon"/>
+		      	</div>
+		    </div>
+		</div>
+		<br />
 
 	    <div class="form-group">
 	      <label>Nome</label>
