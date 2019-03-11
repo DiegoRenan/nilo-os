@@ -1,0 +1,24 @@
+<% provide(:title, "OSNILO") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div class="container-fluid" id="applogin">
+        <%= render 'layouts/logo'%>
+        <div class="container">
+          <center><%= render 'layouts/flash' %></center>
+        </div>
+        <%= yield %>
+    </div>
+    
+  </body>
+</html>
