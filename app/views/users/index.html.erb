@@ -13,20 +13,27 @@
       </span>
     </li>
 
-    <li class="col-6">
-      <br/>
-      <br/>
+    <li class="col-4">
+
      	<%= link_to user.name, user %>
     </li>
 
     <li class="col-2">
-        <br/>
-        <br/>
+        <% if current_user.admin? %>
+          <%= link_to "Editar", edit_user_path(user) %>
+        <% else %>
+
+        <%end%>
+    </li>
+
+    <li class="col-2">
         <% if current_user.admin? && !current_user?(user) %>
           <%= link_to "delete", user, 
                                 method: :delete,
                                 data: { confirm: "Deletar #{user.name}?" } %>
-        <% end %>
+        <% else %>
+
+        <%end%>
     </li>
   <% end %>
   </div>
