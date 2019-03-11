@@ -1,0 +1,19 @@
+<%= provide(:title, 'User') %>
+<div class="row align-items-center">
+<div class="col">
+<h1><%= @user.name %></h1>
+<p>
+	<span>
+		<% if @user.picture? %>
+			<%= image_tag @user.picture.url, class: "img-icon"%>
+		<%end%>
+	</span>
+
+	<strong>Nome de usuáiro:</strong>
+	<%= @user.username %>
+
+	<strong>Email:</strong>
+	<%= @user.email %>
+</p>
+</div>
+</div>
