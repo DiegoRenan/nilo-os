@@ -22,7 +22,9 @@
     <li class="col-2">
         <br/>
         <br/>
-        <label>Deletar</label>
+          <%= link_to "delete", user, 
+                                method: :delete,
+                                data: { confirm: "Deletar #{user.name}?" } %>
 
     </li>
   <% end %>
