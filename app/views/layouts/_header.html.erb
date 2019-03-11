@@ -8,21 +8,23 @@
 
   		<div class="collapse navbar-collapse container">
       		<ul class="navbar-nav ml-auto ">
-      			<!-- #deve permitir apenas se usário logado -->
+      			<% if logged_in? %>
 	                <li class="nav-item dropdown container">
 	                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                      	<span>
-			                    <!-- #adicionar o foto de perfil do user -->
+			                    <% if current_user.picture? %>
+			                        <%= image_tag current_user.picture.url, :width=>"50px"%>
+			                    <%end%>
 			                </span>
 	                    </a>
 	                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	                      <!-- #adicionar um link para o user -->
+	                       <%= link_to current_user.name, current_user, class: "dropdown-item" %>
 	                      <%= link_to "Configurações", '#', class: "dropdown-item" %>
 	                      <div class="dropdown-divider"></div>
-	                      <!-- #opção de logout -->
+	                       <%= link_to "Sair", logout_path, class: "dropdown-item", method: :delete%>
 	                    </div>
 	                </li>
-	            <!-- #end -->    
+	            <% end %>   
 	      </ul>
   		</div>
 
