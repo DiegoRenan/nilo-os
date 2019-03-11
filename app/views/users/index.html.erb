@@ -1,0 +1,30 @@
+<% provide(:title, 'All users') %>
+<center><h1>Usuários</h1></center>
+
+
+<ul class="users">
+  <div class="row">
+  <% @users.each do |user| %>
+    <li class="col-4">
+    	<span>
+          <% if user.picture? %>
+      			<%= image_tag user.picture.url, size: 50 %>
+      		<%end%>
+      </span>
+    </li>
+
+    <li class="col-6">
+      <br/>
+      <br/>
+     	<%= link_to user.name, user %>
+    </li>
+
+    <li class="col-2">
+        <br/>
+        <br/>
+        <label>Deletar</label>
+
+    </li>
+  <% end %>
+  </div>
+</ul>

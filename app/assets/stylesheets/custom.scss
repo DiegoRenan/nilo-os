@@ -31,3 +31,17 @@ main{
     color: red;
   }
 }
+
+/*###########################################################
+#							USERS							  #
+###########################################################*/
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px;
+    border-bottom: 1px solid #CECECE;
+  }
+}
