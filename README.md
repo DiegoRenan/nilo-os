@@ -20,6 +20,10 @@ Instruções de instalação e configuração
 <code>rails db:migrate</code>
 </li>
 <li>
+<p>Execute o comando para inserir usuário admin ao app</p>
+<code>rails db:seed</code>
+</li>
+<li>
 <p>Inicia o servidor rails em localhost:3000</p>
 <code>rails server</code>
 </li>
