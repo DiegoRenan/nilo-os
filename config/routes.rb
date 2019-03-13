@@ -1,8 +1,10 @@
 Rails.application.routes.draw do 	
-  get 'departments/new'
 	root 'users#index'
   	resources :users
-  	resources :departments
+  	resources :sectors, except: [:create]
+  	resources :departments do
+  		resources :sectors, except: [:index, :destroy]
+  	end
 
   	get    '/login',   to: 'sessions#new'
   	post   '/login',   to: 'sessions#create'
