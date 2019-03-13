@@ -1,5 +1,5 @@
 class AreasController < ApplicationController
-  before_action :set_area, only: [:show]
+  before_action :set_area, only: [:show, :edit, :update, :destroy]
 
   def index
   	@areas = Area.all
@@ -7,6 +7,9 @@ class AreasController < ApplicationController
 
   def new
   	@area = Area.new
+  end
+
+  def edit
   end
 
   def show
@@ -20,6 +23,21 @@ class AreasController < ApplicationController
   	else
   		render 'new'
   	end
+  end
+
+  def update
+  	if @area.update(area_params)
+  		flash[:success] = "Area #{@area.name} atualizada"
+  		redirect_to @area
+  	else
+  		render 'edit'
+  	end
+  end
+
+  def destroy
+  	@area.destroy
+  	flash[:success] = "Area removida"
+  	redirect_to areas_path
   end
 
   private
