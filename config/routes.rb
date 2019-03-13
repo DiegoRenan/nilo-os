@@ -1,7 +1,8 @@
 Rails.application.routes.draw do 	
-	root 'users#index'
+	  root 'users#index'
   	resources :users
-  	resources :sectors, except: [:create]
+  	resources :areas
+    resources :sectors, except: [:create]
   	resources :departments do
   		resources :sectors, except: [:index, :destroy]
   	end
