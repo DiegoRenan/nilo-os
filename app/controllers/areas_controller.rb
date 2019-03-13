@@ -1,5 +1,7 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  before_action :user_admin,   only: [:new, :create, :edit, :update, :destroy]
 
   def index
   	@areas = Area.all
@@ -49,4 +51,15 @@ class AreasController < ApplicationController
   	def set_area
   		@area = Area.find(params[:id])
   	end
+
+  	def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Você não está logado."
+        redirect_to login_url
+      end
+    end
+
+    def user_admin
+      redirect_to root_url unless current_user.admin? 
+    end
 end
