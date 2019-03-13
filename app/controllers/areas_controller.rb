@@ -1,6 +1,10 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show]
 
+  def index
+  	@areas = Area.all
+  end
+
   def new
   	@area = Area.new
   end
