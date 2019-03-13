@@ -1,0 +1,28 @@
+<center><h1>Setores</h1></center>
+
+<div class="users">
+<ul class="row align-items-center">
+  <% @departments.each do |department| %>
+    <% department.sectors.each do |sector| %>
+        <li class="col-4">
+          <%= link_to sector.name, department_sector_path(department, sector) %>
+        </li>
+        <li class="col-4">
+          <%= sector.department.name %>
+        </li>
+        <% if current_user.admin? %>
+          <li class="col-2">
+            <%= link_to 'Edit', edit_department_sector_path(department, sector) %>
+          </li>
+          <li class="col-2">
+            <%= link_to 'Deletar', sector, method: :delete, data: { confirm: 'Deletar setor #{sector.name}?' } %>
+          </li>
+        <%end%>
+    <% end %>
+  <%end%>
+</ul>
+</div>
+<br>
+
+<br>
+

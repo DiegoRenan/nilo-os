@@ -1,6 +1,10 @@
 class SectorsController < ApplicationController
   before_action :set_sector, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @departments = Department.all
+  end
+
   def new
     @department = Department.find(params[:department_id])
     @sector = Sector.new
@@ -31,6 +35,12 @@ class SectorsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @sector.destroy
+    flash[:success] = "Setor deletado."
+    redirect_to sectors_path
   end
 
   private
