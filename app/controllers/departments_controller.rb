@@ -9,6 +9,9 @@ class DepartmentsController < ApplicationController
   	@department = Department.new
   end
 
+  def edit
+  end
+
   def show
   end
 
@@ -18,9 +21,24 @@ class DepartmentsController < ApplicationController
     if @department.save
 	    flash[:success] = "Departamento #{@department.name} criado."
     	redirect_to @department
-	else
+	  else
        render 'new'
     end
+  end
+
+  def update
+      if @department.update(department_params)
+        flash[:success] = "Departamento #{@department.name} atualizado."
+        redirect_to @department
+      else
+        render 'edit'
+      end
+  end
+
+  def destroy
+    @department.destroy
+    flash[:success] = "Departamento deletado."
+    redirect_to departments_path
   end
 
   private
