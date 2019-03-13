@@ -1,5 +1,7 @@
 class SectorsController < ApplicationController
   def new
+    @department = Department.find(params[:department_id])
+    @sector = Sector.new
   end
 
   def create
