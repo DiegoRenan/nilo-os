@@ -1,5 +1,7 @@
 class ServiceStatusesController < ApplicationController
   before_action :set_service_status, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  before_action :user_admin,   only: [:new, :create, :edit, :update, :destroy]
 
   def index
   	@service_statuses = ServiceStatus.all
@@ -49,5 +51,16 @@ class ServiceStatusesController < ApplicationController
   	def set_service_status
   		@service_status = ServiceStatus.find(params[:id])
   	end
+
+  	def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Você não está logado."
+        redirect_to login_url
+      end
+    end
+
+    def user_admin
+      redirect_to root_url unless current_user.admin? 
+    end
 
 end

@@ -23,5 +23,6 @@
 <br>
 
 <br>
-
+<% if current_user.admin? %>
 <%= link_to 'Novo Status', new_service_status_path, class: "btn btn-success btn-block" %>
+<% end %>
