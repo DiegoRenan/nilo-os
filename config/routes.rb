@@ -1,5 +1,5 @@
 Rails.application.routes.draw do 	
-	  root 'services#index'
+	  root 'sessions#new'
   	resources :users
   	resources :areas
     resources :sectors, except: [:create]
