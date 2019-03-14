@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_011245) do
+ActiveRecord::Schema.define(version: 2019_03_14_141601) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -44,6 +44,24 @@ ActiveRecord::Schema.define(version: 2019_03_14_011245) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "department_id"
+    t.bigint "sector_id"
+    t.bigint "service_status_id"
+    t.string "picture"
+    t.bigint "user_id"
+    t.bigint "service_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_services_on_department_id"
+    t.index ["sector_id"], name: "index_services_on_sector_id"
+    t.index ["service_status_id"], name: "index_services_on_service_status_id"
+    t.index ["service_type_id"], name: "index_services_on_service_type_id"
+    t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -58,4 +76,9 @@ ActiveRecord::Schema.define(version: 2019_03_14_011245) do
   end
 
   add_foreign_key "sectors", "departments"
+  add_foreign_key "services", "departments"
+  add_foreign_key "services", "sectors"
+  add_foreign_key "services", "service_statuses"
+  add_foreign_key "services", "service_types"
+  add_foreign_key "services", "users"
 end
