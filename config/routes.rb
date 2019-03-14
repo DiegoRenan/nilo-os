@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   	resources :departments do
   		resources :sectors, except: [:index, :destroy]
   	end
+    resources :service_statuses
 
   	get    '/login',   to: 'sessions#new'
   	post   '/login',   to: 'sessions#create'
