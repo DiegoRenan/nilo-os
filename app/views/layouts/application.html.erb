@@ -13,8 +13,9 @@
     <%= render 'layouts/header' %>
     <main class="fluid-container">
         <div class="container">
+          <center><h1><%= yield :title %></h1></center>
+          <%= render 'layouts/pageHeader' %>
           <div class="content">
-            <%= render 'layouts/pageHeader' %>
             <%= render 'layouts/flash' %>
             <%= yield %>
           </div>

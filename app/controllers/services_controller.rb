@@ -1,4 +1,14 @@
 class ServicesController < ApplicationController
+  
+  def index
+	if current_user.admin?
+      @services = Service.all
+    else
+      @services = current_user.services.all
+      @services += Service.where(user_id: current_user.id)
+    end
+  end
+  
   def new
   	@service = Service.new
   end

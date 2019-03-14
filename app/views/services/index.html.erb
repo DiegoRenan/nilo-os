@@ -1,0 +1,40 @@
+<% provide(:title, 'Chamados') %>
+
+<div class="container">
+  <div class="row align-items-center" id="services-title">
+    <div class="col-1"><strong>Id</strong></div>
+    <div class="col-5"><strong>Assunto</strong></div>
+    <div class="col-2"><strong>Status</strong></div>
+    <div class="col-2"><strong>Atualização</strong></div>
+    <div class="col-2">-</div>
+    <div class="container">
+        <div class="container col-12 line"></div>
+    </div>
+  </div>
+<div class="row align-items-center" id="services">
+    <% @services.each do |service| %>
+        <div class="col-1 line">
+          <%= service.id %>
+        </div>
+        <div class="col-5 line">
+          <%=link_to service.title, service %>
+        </div>
+        <div class="col-2 line">
+          <%= service.service_status.status %>
+        </div>
+        <div class="col-2 line">
+          <%= service.updated_at.strftime("%d/%m/%Y") %>
+        </div>
+        <div class="col-2 line">
+          <% if current_user.admin? %>
+              <%= link_to 'Delete', service, method: :delete, data: { confirm: "Deletar chamado #{service.id}?" } %>
+          <%end%>
+        </div>
+        
+    <% end %>
+</div>
+</div>
+<br>
+
+
+<%= link_to 'Novo Chamado', new_service_path, class: "btn btn-success btn-block"%>
