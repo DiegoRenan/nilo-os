@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   		resources :sectors, except: [:index, :destroy]
   	end
     resources :service_statuses
-
+    resources :service_types
   	get    '/login',   to: 'sessions#new'
   	post   '/login',   to: 'sessions#create'
   	delete '/logout',  to: 'sessions#destroy'
