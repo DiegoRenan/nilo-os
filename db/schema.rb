@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_141601) do
+ActiveRecord::Schema.define(version: 2019_03_14_153918) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -71,7 +71,11 @@ ActiveRecord::Schema.define(version: 2019_03_14_141601) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.bigint "department_id"
+    t.bigint "sector_id"
+    t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["sector_id"], name: "index_users_on_sector_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
@@ -81,4 +85,6 @@ ActiveRecord::Schema.define(version: 2019_03_14_141601) do
   add_foreign_key "services", "service_statuses"
   add_foreign_key "services", "service_types"
   add_foreign_key "services", "users"
+  add_foreign_key "users", "departments"
+  add_foreign_key "users", "sectors"
 end

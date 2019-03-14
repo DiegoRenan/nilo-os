@@ -5,13 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if !Department.exists?(name: "ADMINISTRADOR")
+	Department.create!(name: "ADMINISTRADOR")
+end
+
+if !Sector.exists?(name: "ADMINISTRADOR")
+	Sector.create!(name: "ADMINISTRADOR",
+				   department_id: 1)
+end
+
 if !User.exists?(email: 'bill@mail.com')
 	User.create!(name:  "Bill Rampson",
              email: "bill@mail.com",
              username: "bill",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin: true)
+             admin: true,
+             department_id: 1,
+             sector_id: 1)
 end
 
 if !ServiceStatus.exists?(status: "ABERTO")

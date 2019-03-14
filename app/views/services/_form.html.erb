@@ -11,14 +11,14 @@
     
     <% c_array = Department.all.map { |c| [c.name, c.id] } %>
     
-    <%= f.select(:department_id, options_for_select(c_array),{prompt: 'Selecione...'}, {class: "form-control", :onchange => "send(value, '/sectors_by_department')"} ) %>
+    <%= f.select(:department_id, options_for_select(c_array),{prompt: 'Selecione...', selected: user_department}, {class: "form-control", :onchange => "send(value, '/sectors_by_department')"} ) %>
    </div>
 
   <div class="form-group">
     <strong>Para qual Setor?*</strong>
 
     <% c_array = Sector.all.map { |c| [c.name, c.id] } %>
-    <%= f.select(:sector_id, options_for_select(c_array), {prompt: 'Selecione...'},{class: "form-control"}) %>
+    <%= f.select(:sector_id, options_for_select(c_array), {prompt: 'Selecione...', selected: user_sector},{class: "form-control"}) %>
 
   </div>
 
@@ -26,7 +26,7 @@
     <strong>Tipo do Serviço*</strong>
     <% c_array = ServiceType.all.map { |c| [c.title, c.id] } %>
 
-    <%= f.select(:service_type_id, options_for_select(c_array),{prompt: 'Selecione...', selected: type_nao_especificado}, {class: "form-control"} ) %>
+    <%= f.select(:service_type_id, options_for_select(c_array),{selected: type_nao_especificado}, {class: "form-control"} ) %>
   </div>
 
   <div class="form-group">

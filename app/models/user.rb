@@ -2,6 +2,9 @@ class User < ApplicationRecord
 	has_secure_password 
 	mount_uploader :picture, PictureUploader
 
+	belongs_to :department
+  	belongs_to :sector
+
 	before_save { self.email = email.downcase }
 
 	validates :name, presence: true, length: { maximum: 50 }
