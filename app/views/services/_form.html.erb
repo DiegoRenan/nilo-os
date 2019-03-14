@@ -1,0 +1,64 @@
+<%= form_with(model: @service, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <strong>Assunto*</strong>
+    <%= f.text_field :title, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <strong>Para qual departamento?*</strong>
+    
+    <% c_array = Department.all.map { |c| [c.name, c.id] } %>
+    
+    <%= f.select(:department_id, options_for_select(c_array),{prompt: 'Selecione...'}, {class: "form-control", :onchange => "send(value, '/sectors_by_department')"} ) %>
+   </div>
+
+  <div class="form-group">
+    <strong>Para qual Setor?*</strong>
+
+    <% c_array = Sector.all.map { |c| [c.name, c.id] } %>
+    <%= f.select(:sector_id, options_for_select(c_array), {prompt: 'Selecione...'},{class: "form-control"}) %>
+
+  </div>
+
+  <div class="form-group">
+    <strong>Tipo do Serviço*</strong>
+    <% c_array = ServiceType.all.map { |c| [c.title, c.id] } %>
+
+    <%= f.select(:service_type_id, options_for_select(c_array),{prompt: 'Selecione...', selected: type_nao_especificado}, {class: "form-control"} ) %>
+  </div>
+
+  <div class="form-group">
+    <strong>Descrição do chamado*</strong>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.hidden_field :service_status_id, value: status_aberto.id %>
+  </div>
+
+  <div class="form-group">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+
+  <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "btn btn-default", :onchange => "readURL(this)"  %>
+  </span>
+  
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img id="img_prev" src="#" alt="your image" class="img-icon"/>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.submit "Abrir Chamado", class: "btn btn-success btn-block"%>
+  </div>
+<% end %>
+
+<%= javascript_tag "append()" %>

@@ -5,10 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-User.create!(name:  "Bill Rampson",
+if !User.exists?(email: 'bill@mail.com')
+	User.create!(name:  "Bill Rampson",
              email: "bill@mail.com",
              username: "bill",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true)
+end
+
+if !ServiceStatus.exists?(status: "ABERTO")
+	ServiceStatus.create!(status:  "ABERTO")
+end
+
+if !ServiceType.exists?(title: "Não específicado")
+	ServiceType.create!(title:  "Não específicado")
+end
