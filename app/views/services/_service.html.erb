@@ -1,6 +1,7 @@
   <div class="col-2">
     <strong><%= @service.user.name %></strong><br />
-    <small><%= @service.created_at.strftime("%d/%m/%Y") %></small>
+    <small>Data: <%= @service.created_at.strftime("%d/%m/%Y") %></small><br/>
+    <small>Hora: <%= @service.created_at.strftime("%H:%M") %></small>
   </div>
 
   <div class="col-10">

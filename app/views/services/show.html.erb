@@ -33,4 +33,18 @@
 </div>
 <br/>
 
+<%= render 'comments/comment' %>
 
+<div class="row">
+  <%= render 'comments/form' %>
+</div>
+
+<div class="container">
+<% if @service.service_status.id != status_fechado.id %>
+    <% if @service.service_status.id != status_aguardando_aprovacao.id || current_user.admin?%>
+      <div class="row">
+        <%= link_to 'Fechar', {} ,{id: @service.id, class: "btn btn-danger btn-block", :onclick => "send(id, '/finalizar_chamado')"} %>
+      </div>
+    <% end %>
+<% end %>
+</div>

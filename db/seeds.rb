@@ -29,6 +29,14 @@ if !ServiceStatus.exists?(status: "ABERTO")
 	ServiceStatus.create!(status:  "ABERTO")
 end
 
+if !ServiceStatus.exists?(status: "FECHADO")
+      ServiceStatus.create!(status:  "FECHADO")
+end
+
+if !ServiceStatus.exists?(status: "AGUARDANDO APROVAÇÃO")
+      ServiceStatus.create!(status:  "AGUARDANDO APROVAÇÃO")
+end
+
 if !ServiceType.exists?(title: "Não específicado")
 	ServiceType.create!(title:  "Não específicado")
 end

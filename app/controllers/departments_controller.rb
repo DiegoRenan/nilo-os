@@ -60,7 +60,7 @@ class DepartmentsController < ApplicationController
     end
 
     def user_admin
-      redirect_to root_url unless current_user.admin? 
+      redirect_to services_path unless current_user.admin? 
     end
 
 end

@@ -49,6 +49,23 @@ class ServicesController < ApplicationController
     flash[:success] = "Ordem de Serviço deletada"
     redirect_to services_path
   end
+
+  def finalizar_chamado
+    @status_fechado = ServiceStatus.where(status: "FECHADO").first
+    @status_avaliando = ServiceStatus.where(status: "AGUARDANDO APROVAÇÃO").first
+    @service = Service.find(params[:value])
+    
+    if current_user.admin?
+      @service.update_attribute(:service_status_id, @status_fechado.id)
+      flash[:success] = "Ordem de serviço #{@service.id} FECHADO"
+    else
+      @service.update_attribute(:service_status_id, @status_avaliando.id)
+      flash[:success] = "Ordem de serviço #{@service.id} AGUARDANDO APROVAÇÃO"
+    end
+    
+    redirect_to @service
+
+  end
   
   private
 
@@ -80,4 +97,6 @@ class ServicesController < ApplicationController
     def user_admin
         redirect_to services_path unless current_user.admin? 
     end
+
+
 end

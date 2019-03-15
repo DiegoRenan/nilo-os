@@ -35,6 +35,18 @@ function readURL(input) {
         }
 }
 
+function send(data, url){     
+        $.ajax({
+                url: url,
+                type: "POST",
+                data: {value: data},
+                dataType: 'json' 
+        })
+        .done(function(response){
+            console.log(response);
+        })        
+}
+
 function append(){
   $('#user_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
