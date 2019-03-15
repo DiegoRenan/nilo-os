@@ -1,4 +1,7 @@
 class ResponsiblesController < ApplicationController
+	before_action :logged_in_user
+	before_action :user_admin
+
 	def create
 		@service = Service.find(params[:responsible][:service_id])
 		@user = User.find(params[:responsible][:user_id])
@@ -25,4 +28,15 @@ class ResponsiblesController < ApplicationController
 		def responsible_params
       		params.require(:responsible).permit(:service_id, :user_id)
     	end
+
+    	def logged_in_user
+	      unless logged_in?
+	        flash[:danger] = "Você não está logado."
+	        redirect_to login_url
+	      end
+	    end
+
+	    def user_admin
+	      redirect_to services_path unless current_user.admin? 
+	    end
 end
