@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :service_statuses
     resources :service_types
     resources :services
+    resources :responsibles
   	get    '/login',   to: 'sessions#new'
   	post   '/login',   to: 'sessions#create'
   	delete '/logout',  to: 'sessions#destroy'

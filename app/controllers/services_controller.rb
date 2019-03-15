@@ -16,6 +16,8 @@ class ServicesController < ApplicationController
   end
 
   def show
+    @responsible = Responsible.new
+    @users = User.all.where.not(id: vinculados(@service))
   end
 
   def edit
@@ -58,6 +60,14 @@ class ServicesController < ApplicationController
       @service = Service.find(params[:id])
     end
 
+    def vinculados(service)
+        users = []
+        responsibles = service.responsibles
+        responsibles.each do |responsible|
+           users.append(responsible.user_id)
+        end
+        users
+    end
     def logged_in_user
       unless logged_in?
         flash[:danger] = "Você não está logado."

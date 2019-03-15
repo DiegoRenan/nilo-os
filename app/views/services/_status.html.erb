@@ -1,0 +1,19 @@
+  <div class="col-4">
+    <strong>Status: </strong><br/>
+    <strong>Serviço: </strong><br />
+    <strong>Setor: </strong><br/>
+    <strong>Responsáveis: </strong><br/>
+  </div>
+  
+
+  <div class="col-8">
+    <%= @service.service_status.status%><br />
+    <%= @service.service_type.title%><br />
+    <%= @service.sector.name%><br />
+    <% @service.responsibles.each do |responsible|%>
+      <%= responsible.user.name%>
+      <% if current_user.admin? %>
+      <%= link_to 'x', responsible, method: :delete, class: "btn btn-sm btn-danger" %> 
+      <%end%>|
+    <%end%>
+  </div>

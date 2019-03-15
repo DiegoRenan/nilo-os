@@ -4,6 +4,9 @@ class User < ApplicationRecord
 
 	belongs_to :department
   	belongs_to :sector
+  	has_many :responsibles
+	has_many :services, :through => :responsibles
+
 
 	before_save { self.email = email.downcase }
 
