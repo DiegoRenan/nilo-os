@@ -6,7 +6,7 @@ class User < ApplicationRecord
   	belongs_to :sector
   	has_many :responsibles
 	has_many :services, :through => :responsibles
-
+	has_many :comments
 
 	before_save { self.email = email.downcase }
 

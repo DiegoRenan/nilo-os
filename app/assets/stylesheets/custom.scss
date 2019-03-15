@@ -13,6 +13,28 @@ main{
     transition: all 0.3s;
 }
 
+#sidebar{
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    transition: all 0.0s;
+  @inculde blue-gradient;
+
+  .navbar-nav{
+    display:inline-block !important;
+  } 
+}
+
+@media(maz-width:768px){
+  #sidebar{margin-left: -250px;}
+  #sidebar.active{
+    margin-left: 0px;
+  }
+  #sidebarCollapse span{
+    display: none;
+  }
+}
+
 .line{
   border-bottom: 1px solid #ccc;
   margin-bottom: 20px;

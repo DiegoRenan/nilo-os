@@ -11,8 +11,9 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <main class="fluid-container">
-        <div class="container">
+    <main>
+      <%= render 'layouts/sidebar' %>
+        <div class="container-fluid">
           <center><h1><%= yield :title %></h1></center>
           <%= render 'layouts/pageHeader' %>
           <div class="content">
