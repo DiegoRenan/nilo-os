@@ -18,15 +18,27 @@ class ServicesController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def create
   	@service = Service.new(service_params)
 
   	if @service.save
     	flash[:success] = "Ordem de serviço #{@service.id} criado"
     	redirect_to @service
-	else
-		render 'new'
-	end
+  	else
+  		render 'new'
+  	end
+  end
+
+  def update
+    if @service.update(service_params)
+      flash[:success] = "Ordem de serviço #{@service.id} atualizada"
+      redirect_to @service
+    else
+      render 'edit'
+    end
   end
 
   private
