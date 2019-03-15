@@ -41,6 +41,12 @@ class ServicesController < ApplicationController
     end
   end
 
+  def destroy
+    @service.destroy
+    flash[:success] = "Ordem de Serviço deletada"
+    redirect_to services_path
+  end
+  
   private
 
   	def service_params
