@@ -52,5 +52,5 @@ production:
   adapter: mysql2
   encoding: utf8
   database: nilo
-  username: nilo-os
+  username: root
   password: <%= Rails.application.credentials[:aws][:db_key] %>
