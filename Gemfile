@@ -32,7 +32,6 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'carrierwave',  '~> 1.2.2'
 gem 'mini_magick', '~> 4.8'
-
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

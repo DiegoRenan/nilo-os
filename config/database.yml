@@ -48,9 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  secret_key_base: <%= Rails.application.credentials[:aws][:secret_key_base] %>
+  secret_key_base: <%= Rails.application.credentials.secret_key_base %>
   adapter: mysql2
   encoding: utf8
   database: nilo
-  username: root
-  password: <%= Rails.application.credentials[:aws][:db_key] %>
+  username: admin
+  password: <%= Rails.application.credentials.db_key %>
