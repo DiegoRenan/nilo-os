@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MySQL. Versions 5.1.10 and up are supported.
 #
 # Install the MySQL driver
@@ -16,37 +17,33 @@
 #  username: admin
 #  password: root
 #  socket: /var/run/mysqld/mysqld.sock
+=======
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: admin
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
+>>>>>>> e0922453b49b4e2d8df9ca53fb32e53f7b973228
 
 #development:
 #  <<: *default
 #  database: nilo-os_development
 
+<<<<<<< HEAD
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 #test:
 #  <<: *default
 #  database: nilo-os_test
+=======
+test:
+  <<: *default
+  database: nilo-os_test
+>>>>>>> e0922453b49b4e2d8df9ca53fb32e53f7b973228
 
-# As with config/secrets.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
-#
-# Instead, provide the password as a unix environment variable when you boot
-# the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full rundown on how to provide these environment variables in a
-# production deployment.
-#
-# On Heroku and other platform providers, you may have a full connection URL
-# available as an environment variable. For example:
-#
-#   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
-#
-# You can use this database configuration with:
-#
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
   secret_key_base: <%= Rails.application.credentials.secret_key_base %>
   adapter: mysql2
