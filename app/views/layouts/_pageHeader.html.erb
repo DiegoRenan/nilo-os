@@ -15,7 +15,9 @@
           <%= content_tag(:li, :class=> current_class?(sectors_path)){
               link_to "Setores | ", sectors_path, class: "nav-item nav-link"
           }%>
-          <%=  %>
+          <%= content_tag(:li, :class=> current_class?(service_types_path)){
+              link_to "Tipo de Serviços | ", service_types_path, class: "nav-item nav-link"
+          }%>
           <%= content_tag(:li, :class=> current_class?(service_statuses_path)){
               link_to "Serviços Status | ", service_statuses_path, class: "nav-item nav-link"
           }%>
