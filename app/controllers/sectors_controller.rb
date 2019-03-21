@@ -40,8 +40,13 @@ class SectorsController < ApplicationController
   end
 
   def destroy
-    @sector.destroy
-    flash[:success] = "Setor deletado."
+    if @sector.users.empty?
+      @sector.destroy
+      flash[:success] = "Setor deletado."
+    else
+      flash[:danger] = "Setor não pode ser deletado. Existem usuários cadastrados neste setor"
+    end
+
     redirect_to sectors_path
   end
 

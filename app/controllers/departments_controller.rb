@@ -38,8 +38,12 @@ class DepartmentsController < ApplicationController
   end
 
   def destroy
-    @department.destroy
-    flash[:success] = "Departamento deletado."
+    if @department.users.empty?
+      @department.destroy
+      flash[:success] = "Departamento deletado."
+    else
+      flash[:danger] = "Departamento não pode ser deletado. Existem usuários cadastrados nesse despartamento"
+    end
     redirect_to departments_path
   end
 
