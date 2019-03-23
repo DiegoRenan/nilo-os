@@ -22,7 +22,7 @@ if !User.exists?(email: 'suporte@suporte.com')
              password_confirmation: "foobar",
              admin: true,
              department_id: 1,
-             sector_id: 1)
+             sector_id: Sector.first.id)
 end
 
 if !ServiceStatus.exists?(status: "ABERTO")
