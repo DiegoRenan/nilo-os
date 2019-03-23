@@ -21,6 +21,9 @@
           <%= content_tag(:li, :class=> current_class?(service_statuses_path)){
               link_to "Serviços Status | ", service_statuses_path, class: "nav-item nav-link"
           }%>
+          <%= content_tag(:li, :class=> current_class?(roles_path)){
+              link_to "Funções | ", roles_path, class: "nav-item nav-link"
+          }%>
         <% end %>
 
         <%= content_tag(:div, :class=> current_class?(user_path(current_user))){
