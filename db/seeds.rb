@@ -14,10 +14,10 @@ if !Sector.exists?(name: "ADMINISTRADOR")
 				   department_id: 1)
 end
 
-if !User.exists?(email: 'bill@mail.com')
-	User.create!(name:  "Bill Rampson",
-             email: "bill@mail.com",
-             username: "bill",
+if !User.exists?(email: 'suporte@suporte.com')
+	User.create!(name:  "Suporte",
+             email: "suporte@suporte.com",
+             username: "suporte",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,

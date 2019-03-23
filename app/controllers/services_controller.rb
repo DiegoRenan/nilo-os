@@ -18,7 +18,7 @@ class ServicesController < ApplicationController
 
   def show
     @responsible = Responsible.new
-    @users = User.all.where.not(id: vinculados(@service))
+    @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"}
   end
 
   def edit
