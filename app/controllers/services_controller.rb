@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
-  before_action :user_admin, only: [:edit, :upade, :destroy]
+  before_action :user_admin, only: [:edit, :update, :destroy]
 
   def index
 	    if current_user.admin?
@@ -22,6 +22,8 @@ class ServicesController < ApplicationController
   end
 
   def edit
+    @responsible = Responsible.new
+    @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"}
   end
 
   def create
@@ -95,7 +97,7 @@ class ServicesController < ApplicationController
     end
 
     def user_admin
-        redirect_to services_path unless current_user.admin? 
+        redirect_to services_path unless current_user.admin? || user_allowed?(current_user, convert_action_name)
     end
 
 

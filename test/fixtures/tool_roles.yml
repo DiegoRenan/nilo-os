@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tool: one
+  role: one
+  read: false
+  create: false
+  update: false
+  delete: false
+
+two:
+  tool: two
+  role: two
+  read: false
+  create: false
+  update: false
+  delete: false

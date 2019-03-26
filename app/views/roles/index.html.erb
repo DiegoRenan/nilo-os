@@ -1,4 +1,4 @@
-<% provide(:title, 'Funções') %>
+<% provide(:title, 'Nivel de Acesso') %>
 
 <div class="row align-items-center">
     <% @roles.each do |role| %>
@@ -22,5 +22,5 @@
 </div>
 <br>
 <% if current_user.admin? %>
-<%= link_to 'Nova Função', new_role_path, class: "btn btn-success btn-block" %>
+<%= link_to 'Novo Nivel de Acesso', new_role_path, class: "btn btn-success btn-block" %>
 <% end %>

@@ -1,4 +1,5 @@
-<% provide(:title, 'Chamados') %>
+<% provide(:title, 'Tickets') %>
+
 
 <div class="container-fluid">
   <div class="row align-items-center" id="services-title">
@@ -6,7 +7,8 @@
     <div class="col-5"><strong>Assunto</strong></div>
     <div class="col-2"><strong>Status</strong></div>
     <div class="col-2"><strong>Atualização</strong></div>
-    <div class="col-2">-</div>
+    <div class="col-1">-</div>
+    <div class="col-1">-</div>
     <div class="container-fluid">
         <div class="container-fluid col-12 line"></div>
     </div>
@@ -25,13 +27,21 @@
         <div class="col-2 line">
           <%= service.updated_at.strftime("%d/%m/%Y") %>
         </div>
-        <div class="col-2 line">
-          <% if current_user.admin? %>
+        <div class="col-1 line">
+          <% if current_user.admin?  || user_allowed?(current_user, "atualizar")%>
+              <%= link_to 'Editar', edit_service_path(service) %>
+          <%else%>
+            <br/>
+          <%end%>
+        </div>
+        <div class="col-1 line">
+          <% if current_user.admin? || user_allowed?(current_user, "deletar")%>
               <%= link_to 'Delete', service, method: :delete, data: { confirm: "Deletar chamado #{service.id}?" } %>
           <%else%>
             <br/>
           <%end%>
         </div>
+
         
     <% end %>
 </div>
@@ -39,4 +49,4 @@
 <br>
 
 
-<%= link_to 'Novo Chamado', new_service_path, class: "btn btn-success btn-block"%>
+<%= link_to 'Abrir Ticket', new_service_path, class: "btn btn-success btn-block"%>

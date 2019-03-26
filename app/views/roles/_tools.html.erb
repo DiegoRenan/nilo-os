@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row align-items-center" id="services-title">
+    <div class="col-6"><strong>Função</strong></div>
+    <div class="col-1"><strong>Criar</strong></div>
+    <div class="col-1"><strong>Vizualizar</strong></div>
+    <div class="col-1"><strong>Editar</strong></div>
+    <div class="col-1"><strong>deletar</strong></div>
+    <div class="col-1"><strong>-</strong></div>
+    <div class="col-1"><strong>-</strong></div>
+    <div class="container-fluid">
+        <div class="container-fluid col-12 line"></div>
+    </div>
+  </div>
+
+  <div class="row align-items-center" id="services">
+    <% @role.tool_roles.each do |tool_role| %>
+        <div class="col-6 line">
+          <%= tool_role.tool.name%>
+        </div>
+        <div class="col-1 line">
+          <%= tool_role.criar ? image_tag("checked.png") : "-" %>
+        </div>
+        <div class="col-1 line">
+          <%= tool_role.ler ? image_tag("checked.png") : "-"%>
+        </div>
+        <div class="col-1 line">
+          <%= tool_role.atualizar ? image_tag("checked.png"): "-" %>
+        </div>
+        <div class="col-1 line">
+          <%= tool_role.deletar ? image_tag("checked.png") : "-"%>
+        </div>
+        <div class="col-1 line">
+          <% if current_user.admin? %>
+              <%= link_to 'editar', edit_tool_role_path(tool_role) %>
+          <%else%>
+            <br/>
+          <%end%>
+        </div>
+        <div class="col-1 line">
+          <% if current_user.admin? %>
+              <%= link_to 'remover', tool_role_path(id: tool_role.id,role_id: @role.id), method: :delete, data: { confirm: "Remover esta permissão?" } %>
+          <%else%>
+            <br/>
+          <%end%>
+        </div>
+        
+    <% end %>
+</div>

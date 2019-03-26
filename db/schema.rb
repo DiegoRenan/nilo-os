@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_23_200250) do
+ActiveRecord::Schema.define(version: 2019_03_25_152224) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -88,6 +88,26 @@ ActiveRecord::Schema.define(version: 2019_03_23_200250) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "tool_roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "tool_id"
+    t.bigint "role_id"
+    t.boolean "ler", default: false
+    t.boolean "criar", default: false
+    t.boolean "atualizar", default: false
+    t.boolean "deletar", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_tool_roles_on_role_id"
+    t.index ["tool_id"], name: "index_tool_roles_on_tool_id"
+  end
+
+  create_table "tools", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "controller"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -99,8 +119,10 @@ ActiveRecord::Schema.define(version: 2019_03_23_200250) do
     t.boolean "admin", default: false
     t.bigint "department_id"
     t.bigint "sector_id"
+    t.bigint "role_id"
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["sector_id"], name: "index_users_on_sector_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
@@ -113,6 +135,9 @@ ActiveRecord::Schema.define(version: 2019_03_23_200250) do
   add_foreign_key "services", "service_statuses"
   add_foreign_key "services", "service_types"
   add_foreign_key "services", "users"
+  add_foreign_key "tool_roles", "roles"
+  add_foreign_key "tool_roles", "tools"
   add_foreign_key "users", "departments"
+  add_foreign_key "users", "roles"
   add_foreign_key "users", "sectors"
 end

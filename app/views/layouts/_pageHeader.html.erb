@@ -2,7 +2,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
         <%= content_tag(:li, :class=> current_class?(services_path)){
-              link_to "Chamados | ", services_path, class: "nav-item nav-link"
+              link_to "Tickets | ", services_path, class: "nav-item nav-link"
         }%>
 
         <% if current_user.admin? %>
@@ -22,7 +22,10 @@
               link_to "Serviços Status | ", service_statuses_path, class: "nav-item nav-link"
           }%>
           <%= content_tag(:li, :class=> current_class?(roles_path)){
-              link_to "Funções | ", roles_path, class: "nav-item nav-link"
+              link_to "Nivel de Acesso | ", roles_path, class: "nav-item nav-link"
+          }%>
+          <%= content_tag(:li, :class=> current_class?(tools_path)){
+              link_to "Funções do Sistema | ", tools_path, class: "nav-item nav-link"
           }%>
         <% end %>
 

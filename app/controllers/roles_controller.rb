@@ -8,6 +8,7 @@ class RolesController < ApplicationController
   end
 
   def show
+    @tools = Tool.all.where.not(id: vinculados(@role))
   end
 
   def new
@@ -69,5 +70,14 @@ class RolesController < ApplicationController
           flash[:danger] = "Você não está logado."
           redirect_to login_url
         end
+    end
+
+    def vinculados(role)
+        vinculados = []
+        tool_roles = role.tool_roles
+        tool_roles.each do |tool_role|
+           vinculados.append(tool_role.tool_id)
+        end
+        vinculados
     end
 end

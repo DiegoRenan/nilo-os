@@ -40,3 +40,46 @@ end
 if !ServiceType.exists?(title: "Não específicado")
 	ServiceType.create!(title:  "Não específicado")
 end
+
+
+########################################################################
+#                              TOOLS                                   #
+########################################################################
+
+if !Tool.exists?(controller: "services")
+     Tool.create!(name: "Tickets",
+                         controller: "services")
+end
+
+if !Tool.exists?(controller: "users")
+      Tool.create!(name: "Usuários",
+                         controller: "users")
+end
+
+if !Tool.exists?(controller: "responsibles")
+      Tool.create!(name: "Delegar responsaveis",
+                         controller: "responsibles")
+end
+
+########################################################################
+#                              ROLE                                   #
+########################################################################
+if !Role.exists?(name: "usuário")
+      Role.create!(name: "usuário")
+end
+
+########################################################################
+#                              TOOL ROLE                               #
+########################################################################
+
+@role_id = Role.where(name: "usuário").take.id
+@tool_id = Tool.where(controller: "services").take.id
+
+if !ToolRole.exists?(:role_id => @role_id, :tool_id => @tool_id)
+      ToolRole.create!(role_id: @role_id,
+                       tool_id: @tool_id,
+                       criar: true,
+                       ler: true,
+                       atualizar: false,
+                       deletar: false)
+end

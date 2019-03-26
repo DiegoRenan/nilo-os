@@ -36,8 +36,17 @@
 		      <labe>Email: </labe><strong><%= @user.email %></strong>
 		      <%= f.hidden_field :email, value: @user.email, class: "form-control"  %>
 		    </div>
-		    
+
 		    <% if current_user.admin? %>
+			    <div class="form-group">
+				    <label>Nivel de Acesso:*</label>
+
+				    <% c_array = Role.all.map { |c| [c.name, c.id] } %>
+				    <%= f.select(:role_id, options_for_select(c_array), {prompt: 'Selecione...'},{class: "form-control"}) %>
+
+				</div>
+		    
+		   
 			    <div class="form-group">
 				    <label>Departamento:*</label>
 				    

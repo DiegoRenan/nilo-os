@@ -10,7 +10,7 @@
 </div>
 
 <br/>
-<% if current_user.admin? %>
+<% if current_user.admin? || user_allowed_controller?(current_user,"responsibles", "criar")%>
 <div class="form-group">
       <strong>Delegar para: </strong>
       <%= render 'responsibles/responsible'%>   

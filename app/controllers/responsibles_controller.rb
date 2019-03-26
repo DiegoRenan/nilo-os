@@ -37,6 +37,6 @@ class ResponsiblesController < ApplicationController
 	    end
 
 	    def user_admin
-	      redirect_to services_path unless current_user.admin? 
+	        redirect_to services_path unless current_user.admin? || user_allowed?(current_user, convert_action_name)
 	    end
 end

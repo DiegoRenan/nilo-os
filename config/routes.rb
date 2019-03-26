@@ -8,8 +8,13 @@ Rails.application.routes.draw do
   	end
     resources :service_statuses
     resources :service_types
+    resources :tools
     resources :services do
       resources :comments
+    end
+    resources :tool_roles, only: [:destroy, :edit, :update]
+    resources :roles  do
+      resources :tool_roles
     end
     resources :responsibles
   	get    '/login',   to: 'sessions#new'
@@ -18,5 +23,5 @@ Rails.application.routes.draw do
 
     post '/finalizar_chamado',to: 'services#finalizar_chamado'
     post '/chamado_pendente_aprovacao',to: 'services#chamado_pendente_aprovacao'
-    resources :roles
+    
 end
