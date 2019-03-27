@@ -83,3 +83,13 @@ if !ToolRole.exists?(:role_id => @role_id, :tool_id => @tool_id)
                        atualizar: false,
                        deletar: false)
 end
+
+@tool_id = Tool.where(controller: "responsibles").take.id
+if !ToolRole.exists?(:role_id => @role_id, :tool_id => @tool_id)
+      ToolRole.create!(role_id: @role_id,
+                       tool_id: @tool_id,
+                       criar: true,
+                       ler: true,
+                       atualizar: false,
+                       deletar: false)
+end
