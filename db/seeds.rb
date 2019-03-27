@@ -88,7 +88,7 @@ end
 if !ToolRole.exists?(:role_id => @role_id, :tool_id => @tool_id)
       ToolRole.create!(role_id: @role_id,
                        tool_id: @tool_id,
-                       criar: true,
+                       criar: false,
                        ler: true,
                        atualizar: false,
                        deletar: false)

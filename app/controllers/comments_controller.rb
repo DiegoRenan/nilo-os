@@ -4,8 +4,16 @@ class CommentsController < ApplicationController
 	def create
 	    @service = Service.find(params[:service_id])
 	    @status_aberto = ServiceStatus.where(status: "ABERTO").first
-	    @service.update_attribute(:service_status_id, @status_aberto.id)
 	    @comment = @service.comments.create(comment_params)
+	    errors = ""
+	   	if @comment.errors.any?
+	   		@comment.errors.full_messages.each do |msg|
+            	  errors += msg + ". " 
+            end
+	   		flash[:danger] = errors
+	   	else
+	    	@service.update_attribute(:service_status_id, @status_aberto.id)
+	    end
 	    redirect_to service_path(@service)
 	end
 

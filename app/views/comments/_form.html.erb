@@ -1,6 +1,8 @@
   <div class="col-12">
     <strong>Responder: </strong>
         <%= form_with(model: [ @service, @service.comments.build ], local: true) do |form| %>
+      <%= render 'shared/error_messages', object: form.object %>
+
       <div class="form-group">
         <%= form.text_area :body, class: "form-control col-12" %>
         <%= form.hidden_field :user_id, value: current_user.id %>

@@ -4,5 +4,5 @@ class Comment < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
   validates :body, presence: true,
-                    length: { minimum: 5 }
+                    length: { minimum: 1 }
 end
