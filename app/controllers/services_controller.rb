@@ -5,9 +5,9 @@ class ServicesController < ApplicationController
 
   def index
 	    if current_user.admin?
-        @services = Service.all
+        @services = Service.all.order('updated_at DESC')
       else
-        @services = current_user.services.all
+        @services = current_user.services.all.order('updated_at DESC')
         @services += Service.where(user_id: current_user.id)
       end
   end

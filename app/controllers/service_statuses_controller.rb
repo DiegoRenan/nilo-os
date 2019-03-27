@@ -4,7 +4,7 @@ class ServiceStatusesController < ApplicationController
   before_action :user_admin,   only: [:new, :create, :edit, :update, :destroy]
 
   def index
-  	@service_statuses = ServiceStatus.all
+  	@service_statuses = ServiceStatus.all.order('created_at DESC')
   end
 
   def new

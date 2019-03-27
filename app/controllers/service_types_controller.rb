@@ -4,7 +4,7 @@ class ServiceTypesController < ApplicationController
   before_action :user_admin,   only: [:new, :create, :edit, :update, :destroy]
 
   def index
-  	@service_types = ServiceType.all
+  	@service_types = ServiceType.all.order('created_at DESC')
   end
 
   def new

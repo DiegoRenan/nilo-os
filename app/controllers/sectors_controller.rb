@@ -4,7 +4,7 @@ class SectorsController < ApplicationController
   before_action :user_admin,   only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @departments = Department.all
+    @departments = Department.all.order('created_at DESC')
   end
 
   def new

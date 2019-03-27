@@ -7,7 +7,7 @@ class ToolsController < ApplicationController
   # GET /tools
   # GET /tools.json
   def index
-    @tools = Tool.all
+    @tools = Tool.all.order('created_at DESC')
   end
 
   # GET /tools/1

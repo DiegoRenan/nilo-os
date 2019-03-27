@@ -7,7 +7,19 @@
         <small>Hora: <%= comment.created_at.localtime.strftime("%H:%M")%></small>
       </div>
       <div class="col-10">
-        <%= comment.body %>
+        <div class="row">
+        
+          <div class="col-10">
+            <%= comment.body %>
+          </div>
+        
+          <div class="col-2">
+            <% if current_user.admin? && current_user?(comment.user) %>
+              <%= link_to 'Editar', edit_comment_path(id: comment.id, service_id: @service.id) %>
+            <%end%>
+          </div>
+        </div>
+
         <% if comment.picture? %>
           <center><%= image_tag comment.picture.url, width: "500rem" %></center>
         <%end%>

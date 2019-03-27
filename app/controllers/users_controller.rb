@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :user_admin, only: [:new, :create, :destroy]
 
   def index
-    @users = User.all.reject {|user| user.email == "suporte@suporte.com"}
+    @users = User.all.order('created_at DESC').reject {|user| user.email == "suporte@suporte.com"}
   end
 
   def show
