@@ -4,11 +4,11 @@ class ServicesController < ApplicationController
   before_action :user_admin, only: [:edit, :update, :destroy]
 
   def index
-	    if current_user.admin?
+	    if current_user.admin? || user_allowed?(current_user, "atualizar")
         @services = Service.all.order('updated_at DESC')
       else
-        @services = current_user.services.all.order('updated_at DESC')
-        @services += Service.where(user_id: current_user.id)
+        @services = current_user.services.all
+        @services += Service.where(user_id: current_user.id).all.where.not(id: @services)
       end
   end
   
