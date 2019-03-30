@@ -12,10 +12,18 @@ main{
 }
 
 .content{
-	padding-top: 3rem; 
+	padding-top: 2rem; 
 	width: 100%;
     min-height: 100vh;
     transition: all 0.3s;
+}
+
+.right{
+  float: right;
+}
+
+.left{
+  float: left;
 }
 
 #sidebar{
@@ -71,6 +79,7 @@ main{
 #pageheader{
   border-radius: 5px 5px 5px 5px;
   margin-top: 1rem;
+  clear: both;
 }
 
 /*##########################################################
@@ -111,7 +120,7 @@ main{
 ###########################################################*/
 
 footer{
-  padding-top: 5rem;
+  padding-top: 6rem;
 }
 
 
@@ -147,4 +156,19 @@ footer{
     padding: 10px;
     border-bottom: 1px solid #CECECE;
   }
+}
+
+/*##########################################################
+#                            BUTTON                        #
+###########################################################*/
+.btn-float-bottom-1{
+ position: fixed;
+ bottom: 5rem;
+ z-index: 1; 
+}
+
+.btn-float-bottom{
+ position: fixed;
+ bottom: 2rem;
+ z-index: 1; 
 }

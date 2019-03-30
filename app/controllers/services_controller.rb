@@ -5,10 +5,10 @@ class ServicesController < ApplicationController
 
   def index
 	    if current_user.admin? || user_allowed?(current_user, "atualizar")
-        @services = Service.all.order('updated_at DESC')
+        @services = Service.all.order('id DESC')
       else
-        @services = current_user.services.all
-        @services += Service.where(user_id: current_user.id).all.where.not(id: @services)
+        @services = current_user.services.all.order('id DESC')
+        @services += Service.where(user_id: current_user.id).all.where.not(id: @services).order('id DESC')
       end
   end
   
@@ -69,8 +69,8 @@ class ServicesController < ApplicationController
   end
 
   def my_services
-    @services = current_user.services.all
-    @services += Service.where(user_id: current_user.id).all.where.not(id: @services)
+    @services = current_user.services.all.order('id DESC')
+    @services += Service.where(user_id: current_user.id).all.where.not(id: @services).order('id DESC')
   end
   
   private

@@ -1,15 +1,16 @@
 <% provide(:title, 'Tickets') %>
 
-
 <div class="container-fluid">
     <%= render 'services/titles' %>
-<div class="row align-items-center" id="services">
-    <% @services.each do |service| %>
-        <%= render 'services/services_body', service: service %>
-    <% end %>
-</div>
+
+    <div class="row align-items-center" id="services">
+      <% @services.each do |service| %>
+          <%= render 'services/services_body', service: service %>
+      <% end %>
+    </div>
 </div>
 <br>
 
+<%= link_to 'Abrir Ticket', new_service_path, class: "btn btn-success btn-block btn-float-bottom"%>
 
-<%= link_to 'Abrir Ticket', new_service_path, class: "btn btn-success btn-block"%>
+
