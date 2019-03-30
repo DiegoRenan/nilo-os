@@ -1,23 +1,23 @@
-default: &default
- adapter: mysql2
- encoding: utf8
- pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
- username: admin
- password: root
- host: localhost
+# default: &default
+#  adapter: mysql2
+#  encoding: utf8
+#  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  username: admin
+#  password: root
+#  host: localhost
  
-development:
- <<: *default
- database: nilo-os_development
+# development:
+#  <<: *default
+#  database: nilo-os_development
 
-test:
- <<: *default
- database: nilo-os_test
+# test:
+#  <<: *default
+#  database: nilo-os_test
 
-# production:
-#   secret_key_base: <%= Rails.application.credentials.secret_key_base %>
-#   adapter: mysql2
-#   encoding: utf8
-#   database: nilo
-#   username: root
-#   password: <%= Rails.application.credentials.db_key %>
+production:
+  secret_key_base: <%= Rails.application.credentials.secret_key_base %>
+  adapter: mysql2
+  encoding: utf8
+  database: nilo
+  username: root
+  password: <%= Rails.application.credentials.db_key %>
