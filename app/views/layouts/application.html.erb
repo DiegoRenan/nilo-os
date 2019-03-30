@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NiloOs</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +12,10 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+    
     <main>
       <%= render 'layouts/sidebar' %>
         <div class="container-fluid">

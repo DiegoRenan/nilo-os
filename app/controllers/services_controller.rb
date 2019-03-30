@@ -66,7 +66,11 @@ class ServicesController < ApplicationController
     end
     
     redirect_to @service
+  end
 
+  def my_services
+    @services = current_user.services.all
+    @services += Service.where(user_id: current_user.id).all.where.not(id: @services)
   end
   
   private

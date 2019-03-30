@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-custom shadow">
-    	
+<nav class="navbar navbar-expand-lg navbar-light bg-custom shadow" id="header">
+    <div class="container">
     	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
         		<span class="navbar-toggler-icon"></span>
   		</button>
@@ -7,9 +7,9 @@
   		<h1 class="navbar-brand">OSNILO</h1>
 
   		<div class="collapse navbar-collapse container">
-      		<ul class="navbar-nav ml-auto ">
+      		<ul class="navbar-nav ml-auto">
       			<% if logged_in? %>
-	                <li class="nav-item dropdown container">
+	                <li class="container nav-item dropdown">
 	                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                      	<span>
 			                    <% if current_user.picture? %>
@@ -26,5 +26,5 @@
 	            <% end %>   
 	      </ul>
   		</div>
-
+  		</div>
 </nav>

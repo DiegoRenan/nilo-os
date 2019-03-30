@@ -24,5 +24,6 @@ Rails.application.routes.draw do
 
     post '/finalizar_chamado',to: 'services#finalizar_chamado'
     post '/chamado_pendente_aprovacao',to: 'services#chamado_pendente_aprovacao'
+    get '/my_services', to: 'services#my_services'
     
 end

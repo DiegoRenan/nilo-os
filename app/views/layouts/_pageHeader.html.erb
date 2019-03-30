@@ -5,6 +5,10 @@
               link_to "Tickets | ", services_path, class: "nav-item nav-link"
         }%>
 
+        <%= content_tag(:li, :class=> current_class?(my_services_path)){
+              link_to "Meus Tickets | ", my_services_path, class: "nav-item nav-link"
+        }%>
+
         <% if current_user.admin? %>
           <%= content_tag(:li, :class=> current_class?(users_path)){
               link_to "Usuários | ", users_path, class: "nav-item nav-link"

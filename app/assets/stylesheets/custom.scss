@@ -1,5 +1,10 @@
 @import "bootstrap";
 
+
+body{
+  font-size: 1vw;
+}
+
 main{
 	display: flex;
     width: 100%;
@@ -43,6 +48,10 @@ main{
 /*#########################################################
 #                            HEADER                      #
 ###########################################################*/
+#header{
+  width: 100%;
+}
+
 
 .bg-custom{
   background-color: #FFFFFF;
