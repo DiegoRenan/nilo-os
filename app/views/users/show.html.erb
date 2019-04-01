@@ -27,7 +27,7 @@
 
 <p>
 	<strong>Empresa:</strong>
-	<%= @user.company.name %>
+	<%= @user.company.nil? ? '' : @user.company.name  %>
 </p>
 
 <p>

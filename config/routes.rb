@@ -9,8 +9,13 @@ Rails.application.routes.draw do
     resources :service_statuses
     resources :service_types
     resources :tools
-    resources :companies
+    
+    resources :companies do
+      resources :services
+    end
+
     resources :comments, only: [:edit, :update]
+
     resources :services do
       resources :comments
     end
