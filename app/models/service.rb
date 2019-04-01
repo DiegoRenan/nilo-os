@@ -4,6 +4,7 @@ class Service < ApplicationRecord
   belongs_to :service_status
   belongs_to :user
   belongs_to :service_type
+  belongs_to :company
   has_many :comments, dependent: :destroy
   has_many :responsibles, dependent: :destroy
   has_many :users, :through => :responsibles

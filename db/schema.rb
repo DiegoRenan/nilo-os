@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_152224) do
+ActiveRecord::Schema.define(version: 2019_04_01_165544) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 2019_03_25_152224) do
     t.datetime "updated_at", null: false
     t.index ["service_id"], name: "index_comments_on_service_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "departments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -81,6 +87,8 @@ ActiveRecord::Schema.define(version: 2019_03_25_152224) do
     t.bigint "service_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_services_on_company_id"
     t.index ["department_id"], name: "index_services_on_department_id"
     t.index ["sector_id"], name: "index_services_on_sector_id"
     t.index ["service_status_id"], name: "index_services_on_service_status_id"
@@ -120,6 +128,8 @@ ActiveRecord::Schema.define(version: 2019_03_25_152224) do
     t.bigint "department_id"
     t.bigint "sector_id"
     t.bigint "role_id"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
@@ -130,6 +140,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_152224) do
   add_foreign_key "comments", "services"
   add_foreign_key "comments", "users"
   add_foreign_key "sectors", "departments"
+  add_foreign_key "services", "companies"
   add_foreign_key "services", "departments"
   add_foreign_key "services", "sectors"
   add_foreign_key "services", "service_statuses"
@@ -137,6 +148,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_152224) do
   add_foreign_key "services", "users"
   add_foreign_key "tool_roles", "roles"
   add_foreign_key "tool_roles", "tools"
+  add_foreign_key "users", "companies"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "sectors"

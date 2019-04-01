@@ -16,6 +16,9 @@
           <%= content_tag(:li, :class=> current_class?(departments_path)){
               link_to "Departamentos | ", departments_path, class: "nav-item nav-link"
           }%>
+          <%= content_tag(:li, :class=> current_class?(companies_path)){
+              link_to "Empresa | ", companies_path, class: "nav-item nav-link"
+          }%>
           <%= content_tag(:li, :class=> current_class?(sectors_path)){
               link_to "Setores | ", sectors_path, class: "nav-item nav-link"
           }%>

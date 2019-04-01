@@ -5,6 +5,7 @@ class User < ApplicationRecord
 	belongs_to :department
   	belongs_to :sector
   	belongs_to :role
+  	belongs_to :company
   	
   	has_many :responsibles
 	has_many :services, :through => :responsibles

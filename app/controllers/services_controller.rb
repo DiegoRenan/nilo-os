@@ -77,7 +77,7 @@ class ServicesController < ApplicationController
 
   	def service_params
       params.require(:service).permit(:title, :body, :picture, :department_id, :sector_id, 
-        :service_status_id, :service_type_id, :user_id)
+        :service_status_id, :service_type_id, :user_id, :company_id)
     end
 
     def set_service
