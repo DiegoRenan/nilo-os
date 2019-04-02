@@ -6,10 +6,36 @@
   		
   		<h1 class="navbar-brand">OSNILO</h1>
 
-  		<div class="collapse navbar-collapse container">
+  		<div class="collapse navbar-collapse">
       		<ul class="navbar-nav ml-auto">
+      			<% if current_user.admin? %>
+		          <%= content_tag(:li, :class=> current_class?(users_path)){
+		              link_to "Usuários |", users_path, class: " nav-link"
+		          }%>
+		          <%= content_tag(:li, :class=> current_class?(departments_path)){
+		              link_to "Departamentos |", departments_path, class: " nav-link"
+		          }%>
+		          <%= content_tag(:li, :class=> current_class?(companies_path)){
+		              link_to "Empresa |", companies_path, class: " nav-link"
+		          }%>
+		          <%= content_tag(:li, :class=> current_class?(sectors_path)){
+		              link_to "Setores |", sectors_path, class: "nav-link"
+		          }%>
+		          <%= content_tag(:li, :class=> current_class?(service_types_path)){
+		              link_to "Tipo de Serviços |", service_types_path, class: "nav-link"
+		          }%>
+		          <%= content_tag(:li, :class=> current_class?(service_statuses_path)){
+		              link_to "Serviços Status |", service_statuses_path, class: "nav-link"
+		          }%>
+		          <%= content_tag(:li, :class=> current_class?(roles_path)){
+		              link_to "Nivel de Acesso |", roles_path, class: "nav-link"
+		          }%>
+		          <%= content_tag(:li, :class=> current_class?(tools_path)){
+		              link_to "Funções do Sistema |", tools_path, class: "nav-link"
+		          }%>
+			    <% end %>
       			<% if logged_in? %>
-	                <li class="container nav-item dropdown">
+	                <li class="nav-item dropdown">
 	                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                      	<span>
 			                    <% if current_user.picture? %>

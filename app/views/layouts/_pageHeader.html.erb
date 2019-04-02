@@ -9,32 +9,17 @@
               link_to "Meus Tickets | ", my_services_path, class: "nav-item nav-link"
         }%>
 
-        <% if current_user.admin? %>
-          <%= content_tag(:li, :class=> current_class?(users_path)){
-              link_to "Usuários | ", users_path, class: "nav-item nav-link"
-          }%>
-          <%= content_tag(:li, :class=> current_class?(departments_path)){
-              link_to "Departamentos | ", departments_path, class: "nav-item nav-link"
-          }%>
-          <%= content_tag(:li, :class=> current_class?(companies_path)){
-              link_to "Empresa | ", companies_path, class: "nav-item nav-link"
-          }%>
-          <%= content_tag(:li, :class=> current_class?(sectors_path)){
-              link_to "Setores | ", sectors_path, class: "nav-item nav-link"
-          }%>
-          <%= content_tag(:li, :class=> current_class?(service_types_path)){
-              link_to "Tipo de Serviços | ", service_types_path, class: "nav-item nav-link"
-          }%>
-          <%= content_tag(:li, :class=> current_class?(service_statuses_path)){
-              link_to "Serviços Status | ", service_statuses_path, class: "nav-item nav-link"
-          }%>
-          <%= content_tag(:li, :class=> current_class?(roles_path)){
-              link_to "Nivel de Acesso | ", roles_path, class: "nav-item nav-link"
-          }%>
-          <%= content_tag(:li, :class=> current_class?(tools_path)){
-              link_to "Funções do Sistema | ", tools_path, class: "nav-item nav-link"
-          }%>
-        <% end %>
+        <%= content_tag(:li, :class=> current_class?(opened_services_path)){
+              link_to "Tickets Abertos | ", opened_services_path, class: "nav-item nav-link"
+        }%>
+
+        <%= content_tag(:li, :class=> current_class?(closed_services_path)){
+              link_to "Tickets Fechados | ", closed_services_path, class: "nav-item nav-link"
+        }%>
+
+        <%= content_tag(:li, :class=> current_class?(waiting_services_path)){
+              link_to "Tickets Aguardando Aprovação | ", waiting_services_path, class: "nav-item nav-link"
+        }%>
 
         <%= content_tag(:div, :class=> current_class?(user_path(current_user))){
               link_to "Perfil ", current_user, class: "nav-item nav-link"

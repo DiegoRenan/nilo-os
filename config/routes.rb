@@ -31,5 +31,8 @@ Rails.application.routes.draw do
     post '/finalizar_chamado',to: 'services#finalizar_chamado'
     post '/chamado_pendente_aprovacao',to: 'services#chamado_pendente_aprovacao'
     get '/my_services', to: 'services#my_services'
+    get '/opened_services', to: 'services#opened_services'
+    get '/closed_services', to: 'services#closed_services'
+    get '/waiting_services', to: 'services#waiting_services'
     
 end

@@ -1,26 +1,4 @@
 <% provide(:title, "Editar Chamado") %>
- 
-  <br/>
-  <% if current_user.admin? || user_allowed?(current_user, "atualizar") %>
-    <div class="form-group">
-          <strong>Delegar para: </strong>
-          <%= render 'responsibles/responsible'%>   
-    </div>
-    <div class="card">
-    <div class="card-body" style="background: #DCDCDC">
-        <div class="row">
-          <%= render 'services/status' %>
-        </div>
-    </div>
-    <div class="card-header" >
-      <div class="row">
-        <%= render 'services/service' %>
-      </div>
-    </div>
-    </div>
-    <br/>
-  <%end%>
-
 <%= form_for(@service) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
@@ -81,3 +59,26 @@
     <%= f.submit "Atualizar", class: "btn btn-success btn-block"%>
   </div>
 <% end %>
+ 
+<br/>
+<% if current_user.admin? || user_allowed?(current_user, "atualizar") %>
+  <div class="form-group">
+        <strong>Delegar para: </strong>
+        <%= render 'responsibles/responsible'%>   
+  </div>
+  <div class="card">
+  <div class="card-body" style="background: #DCDCDC">
+      <div class="row">
+        <%= render 'services/status' %>
+      </div>
+  </div>
+  <div class="card-header" >
+    <div class="row">
+      <%= render 'services/service' %>
+    </div>
+  </div>
+  </div>
+  <br/>
+<%end%>
+
+

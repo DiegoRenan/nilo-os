@@ -60,6 +60,16 @@ main{
   width: 100%;
 }
 
+#header ul li {
+  a:hover{
+    border-bottom: 1px #000 solid !important;
+  }
+
+}
+
+#header .active{
+  border-bottom: 1px #000 solid !important;
+}
 
 .bg-custom{
   background-color: #FFFFFF;

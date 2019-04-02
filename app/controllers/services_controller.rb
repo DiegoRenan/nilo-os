@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  include ServicesHelper
   before_action :set_service, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
   before_action :user_admin, only: [:edit, :update, :destroy]
@@ -18,7 +19,7 @@ class ServicesController < ApplicationController
 
   def show
     @responsible = Responsible.new
-    @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"}
+    @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"} || Users.all
   end
 
   def edit
@@ -28,7 +29,7 @@ class ServicesController < ApplicationController
 
   def create
   	@service = Service.new(service_params)
-
+    @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"}
   	if @service.save
     	flash[:success] = "Ordem de serviço #{@service.id} criado"
     	redirect_to @service
@@ -38,6 +39,7 @@ class ServicesController < ApplicationController
   end
 
   def update
+    @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"}
     if @service.update(service_params)
       flash[:success] = "Ordem de serviço #{@service.id} atualizada"
       redirect_to @service
@@ -71,6 +73,18 @@ class ServicesController < ApplicationController
   def my_services
     @services = current_user.services.all.order('id DESC')
     @services += Service.where(user_id: current_user.id).all.where.not(id: @services).order('id DESC')
+  end
+
+  def opened_services
+    @services = Service.where(service_status_id: status_aberto.id).all.order('id DESC')
+  end
+
+  def closed_services
+    @services = Service.where(service_status_id: status_fechado.id).all.order('id DESC')
+  end
+
+  def waiting_services
+    @services = Service.where(service_status_id: status_aguardando_aprovacao.id).all.order('id DESC')
   end
   
   private
