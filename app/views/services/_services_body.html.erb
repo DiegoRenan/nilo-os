@@ -17,8 +17,11 @@
 <div class="col-2 line">
   <%= service.service_status.status %>
 </div>
-<div class="col-2 line">
-  <%= service.updated_at.strftime("%d/%m/%Y") %>
+<div class="col-1 line">
+  <small><%= service.created_at.strftime("%d/%m/%y %H:%M") %></small>
+</div>
+<div class="col-1 line">
+  <small><%= last_update(service).strftime("%d/%m/%y %H:%M") %></small>
 </div>
 <div class="col-1 line">
   <% if current_user.admin?  || user_allowed?(current_user, "atualizar")%>

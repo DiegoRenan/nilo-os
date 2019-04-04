@@ -11,6 +11,14 @@ module ServicesHelper
 		ServiceStatus.where(status: "AGUARDANDO APROVAÇÃO").first
 	end
 
+	def last_update(service)
+		@last_update = service.updated_at
+		service.comments.each do |comment|
+			@last_update = comment.updated_at unless @last_update > comment.updated_at
+		end
+		@last_update
+	end
+
 	def type_nao_especificado
 		ServiceStatus.where(status: "Não especificado").first
 	end
