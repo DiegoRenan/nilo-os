@@ -8,6 +8,7 @@ class User < ApplicationRecord
   	belongs_to :company
   	
   	has_many :responsibles
+  	has_many :services
 	has_many :services, :through => :responsibles
 	has_many :comments
 

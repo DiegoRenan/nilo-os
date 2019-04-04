@@ -68,11 +68,39 @@ if !Role.exists?(name: "usuário")
       Role.create!(name: "usuário")
 end
 
+if !Role.exists?(name: "técnico")
+      Role.create!(name: "técnico")
+end
+
 ########################################################################
 #                              TOOL ROLE                               #
 ########################################################################
 
+###### usuário #################
 @role_id = Role.where(name: "usuário").take.id
+@tool_id = Tool.where(controller: "services").take.id
+
+if !ToolRole.exists?(:role_id => @role_id, :tool_id => @tool_id)
+      ToolRole.create!(role_id: @role_id,
+                       tool_id: @tool_id,
+                       criar: true,
+                       ler: true,
+                       atualizar: false,
+                       deletar: false)
+end
+
+@tool_id = Tool.where(controller: "responsibles").take.id
+if !ToolRole.exists?(:role_id => @role_id, :tool_id => @tool_id)
+      ToolRole.create!(role_id: @role_id,
+                       tool_id: @tool_id,
+                       criar: false,
+                       ler: true,
+                       atualizar: false,
+                       deletar: false)
+end
+
+###### técnico #################
+@role_id = Role.where(name: "técnico").take.id
 @tool_id = Tool.where(controller: "services").take.id
 
 if !ToolRole.exists?(:role_id => @role_id, :tool_id => @tool_id)

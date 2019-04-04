@@ -5,11 +5,12 @@ class ServicesController < ApplicationController
   before_action :user_admin, only: [:edit, :update, :destroy]
 
   def index
-	    if current_user.admin? || user_allowed?(current_user, "atualizar")
+	    if current_user.admin? || user_tecnico? || user_allowed?(current_user, "atualizar")
         @services = Service.all.order('id DESC')
       else
-        @services = current_user.services.all.order('id DESC')
-        @services += Service.where(user_id: current_user.id).all.where.not(id: @services).order('id DESC')
+        @services = current_user.services.all
+        @services += Service.where(user_id: current_user.id).all.where.not(id: @services).all
+        @services = @services.sort_by{|id|}.reverse
       end
   end
   
@@ -71,20 +72,43 @@ class ServicesController < ApplicationController
   end
 
   def my_services
-    @services = current_user.services.all.order('id DESC')
-    @services += Service.where(user_id: current_user.id).all.where.not(id: @services).order('id DESC')
+    if current_user.admin? || user_tecnico? || user_allowed?(current_user, "atualizar")
+      @services = current_user.services.all
+      @services += Service.where(user_id: current_user.id).all.where.not(id: @services)
+    else
+      @services = Service.where(user_id: current_user.id).all
+    end
+    @services = @services.sort_by{|id|}.reverse
   end
 
   def opened_services
-    @services = Service.where(service_status_id: status_aberto.id).all.order('id DESC')
+    if current_user.admin? || user_tecnico? || user_allowed?(current_user, "atualizar")
+      @services = Service.where(service_status_id: status_aberto.id).all
+    else
+       @services = current_user.services.where(service_status_id: status_aberto.id).all
+       @services += Service.where(user_id: current_user.id, service_status_id: status_aberto.id).all.where.not(id: @services)
+    end
+    @services = @services.sort_by{|id|}.reverse
   end
 
   def closed_services
-    @services = Service.where(service_status_id: status_fechado.id).all.order('id DESC')
+    if current_user.admin? || user_tecnico? || user_allowed?(current_user, "atualizar")
+      @services = Service.where(service_status_id: status_fechado.id).all
+    else
+      @services = current_user.services.where(service_status_id: status_fechado.id).all
+      @services += Service.where(user_id: current_user.id, service_status_id: status_fechado.id).all.where.not(id: @services)
+    end
+    @services = @services.sort_by{|id|}.reverse
   end
 
   def waiting_services
-    @services = Service.where(service_status_id: status_aguardando_aprovacao.id).all.order('id DESC')
+    if current_user.admin? || user_tecnico? || user_allowed?(current_user, "atualizar")
+      @services = Service.where(service_status_id: status_aguardando_aprovacao.id).all
+    else
+      @services = current_user.services.where(service_status_id: status_aguardando_aprovacao.id).all
+      @services += Service.where(user_id: current_user.id, service_status_id: status_aguardando_aprovacao.id).all.where.not(id: @services)
+    end
+    @services = @services.sort_by{|id|}.reverse
   end
   
   private

@@ -14,6 +14,10 @@ module ApplicationHelper
         end
     end
 
+    def user_tecnico?
+        current_user.role.name == 'técnico' ? true : false
+    end 
+
     def user_allowed_controller?(user, controller, tipo_acesso)
         controller_id = Tool.where(controller: controller).take.id
         if user.role.tool_roles.exists?
