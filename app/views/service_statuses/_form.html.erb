@@ -1,0 +1,12 @@
+<%= form_with(model: @service_status, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.text_field :status, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Criar Status", class: "btn btn-success btn-block"%>
+  </div>
+<% end %>

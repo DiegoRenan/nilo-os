@@ -1,0 +1,20 @@
+<% provide(:title, "#{@role.name}") %>
+
+<p>
+  <strong>Função:</strong>
+  <%= @role.name %>
+</p>
+
+<br />
+<p>
+  <strong>Permissões</strong>
+  <%= render 'roles/tools' %>
+</p>
+
+
+<p>
+	<strong>Adicionar Funções</strong>
+	<center>
+		<%= render 'tool_roles/form' %>
+	</center>
+</p>

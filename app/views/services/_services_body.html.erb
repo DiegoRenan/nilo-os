@@ -1,0 +1,41 @@
+<div class="col-1 line">
+    <%= service.id %>
+</div>
+<div class="col-2 line">
+  <%=link_to service.title, service %>
+</div>
+<div class="col-1 line">
+  <%= service.user.name %>
+</div>
+<div class="col-2 line">
+  <% if service.responsibles.exists? %>
+    <%= render 'services/responsibles', service: service %>
+  <%else%>
+    <br />
+  <% end %>
+</div>
+<div class="col-2 line">
+  <%= service.service_status.status %>
+</div>
+<div class="col-1 line">
+  <small><%= service.created_at.strftime("%d/%m/%y %H:%M") %></small>
+</div>
+<div class="col-1 line">
+  <small><%= last_update(service).strftime("%d/%m/%y %H:%M") %></small>
+</div>
+<div class="col-1 line">
+  <% if current_user.admin?  || user_allowed?(current_user, "atualizar")%>
+      <%= link_to 'Editar', edit_service_path(service) %>
+  <%else%>
+    <br/>
+  <%end%>
+</div>
+<div class="col-1 line">
+  <% if current_user.admin? || user_allowed?(current_user, "deletar")%>
+      <%= link_to 'Delete', service, method: :delete, data: { confirm: "Deletar chamado #{service.id}?" } %>
+  <%else%>
+    <br/>
+  <%end%>
+</div>
+
+        

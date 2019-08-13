@@ -1,0 +1,45 @@
+<%= provide(:title, 'Perfil') %>
+<div class="row align-items-center">
+<div class="col">
+<h1><%= @user.name %></h1>
+<p>
+	<span>
+		<% if @user.picture? %>
+			<%= image_tag @user.picture.url, class: "img-icon"%>
+		<%end%>
+	</span>
+<p>
+	<strong>Nome de usuário:</strong>
+	<%= @user.username %>
+</p>
+
+<p>
+	<strong>Email:</strong>
+	<%= @user.email %>
+</p>
+
+<% if current_user.admin?%> 
+<p>
+	<strong>Nivel de Acesso:</strong>
+	<%= @user.role.name%>
+</p>
+<% end %>
+
+<p>
+	<strong>Empresa:</strong>
+	<%= @user.company.nil? ? '' : @user.company.name  %>
+</p>
+
+<p>
+	<strong>Departamento:</strong>
+	<%= @user.department.name %>
+</p>
+
+<p>
+	<strong>Sector:</strong>
+	<%= @user.sector.name %>
+</p>
+
+</p>
+</div>
+</div>

@@ -1,0 +1,28 @@
+<h1>Editar Resposta</h1>
+
+<div class="col-12">
+    <%= form_with(model: [ @service, @comment ], local: true) do |form| %>
+      
+      <%= render 'shared/error_messages', object: form.object %>
+
+      <div class="form-group">
+        <%= form.text_area :body, class: "form-control col-12" %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <p>
+      <div class="row">
+          <div class="col-4">
+            <span class="picture">
+              <%= form.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "btn btn-default col-12", :onchange => "readURL(this)"  %>
+            </span>
+          </div>
+          <div class="col-8">
+                <img id="img_prev" src="#" alt="your image" class="img-icon"/>
+          </div>
+      </div>
+      </p>
+      <p class="col-12">
+        <%= form.submit "Enviar", class: "btn btn-success btn-block"%>
+      </p>
+    <% end %>
+</div>

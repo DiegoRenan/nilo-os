@@ -1,0 +1,28 @@
+<% provide(:title, 'Status') %>
+
+<div class="row align-items-center">
+    <% @service_statuses.each do |service_status| %>
+        <div class="col-8">
+          <%=link_to service_status.status, service_status %>
+        </div>
+        <% if current_user.admin? %>
+          <div class="col-2">
+            <%= link_to 'Editar', edit_service_status_path(service_status) %>
+          </div>
+          <div class="col-2">
+            <%= link_to 'Deletar', service_status, method: :delete, data: { confirm: "Deletar #{service_status.status}"} %>
+          </div>
+
+        <%end%>
+      <div class="container-fluid">
+        <div class="container-fluid col-12 line"></div>
+      </div>
+    <% end %>
+</div>
+
+<br>
+
+<br>
+<% if current_user.admin? %>
+<%= link_to 'Novo Status', new_service_status_path, class: "btn btn-success btn-block btn-float-bottom" %>
+<% end %>

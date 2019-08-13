@@ -1,0 +1,15 @@
+<% provide(:title, "#{@department.name}") %>
+
+<h2>Setores:</h2>
+<div class="row">
+	<%= render @department.sectors %>
+</div>
+
+
+<br />
+<% if current_user.admin? %>
+<p>
+	<h2>Adicionar Setor:</h2>
+	<%= render "sectors/sector_form" %>
+</p>
+<% end %>

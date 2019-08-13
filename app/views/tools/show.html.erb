@@ -1,0 +1,13 @@
+<% provide(:title, "#{@tool.name}") %>
+
+<p>
+  <strong>Função:</strong>
+  <%= @tool.name %>
+</p>
+
+<% if suport_user? %>
+<p>
+  <strong>Controller:</strong>
+  <%= @tool.controller %>
+</p>
+<% end %>

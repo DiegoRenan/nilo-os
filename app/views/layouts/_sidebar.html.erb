@@ -1,0 +1,51 @@
+<% if logged_in? %>
+<div class="collapse navbar-light bg-custom shadow" id="sidebar">
+<div class="container-fluid">
+
+<div class="navbar-collapse navbar-inner ">
+        <div class="row justify-content-md-center">
+            <div clas="col" id="sidebar-perfil">
+                <span>
+                    <% if current_user.picture? %>
+                        <%= image_tag current_user.picture.url, class: "img-icon"%>
+                    <%end%>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="dropdown-divider"></div>
+
+        <ul class="navbar-nav">
+        <%= content_tag(:li, :class=> current_class?(services_path)){
+              link_to "Chamados", services_path, class: "nav-item nav-link"
+        }%>
+
+        <% if current_user.admin? %>
+          <%= content_tag(:li, :class=> current_class?(users_path)){
+              link_to "Usuários", users_path, class: "nav-item nav-link"
+          }%>
+          <%= content_tag(:li, :class=> current_class?(departments_path)){
+              link_to "Departamentos", departments_path, class: "nav-item nav-link"
+          }%>
+          <%= content_tag(:li, :class=> current_class?(sectors_path)){
+              link_to "Setores", sectors_path, class: "nav-item nav-link"
+          }%>
+          <%=  %>
+          <%= content_tag(:li, :class=> current_class?(service_statuses_path)){
+              link_to "Serviços Status", service_statuses_path, class: "nav-item nav-link"
+          }%>
+        <% end %>
+        <div class="dropdown-divider"></div>
+        <%= content_tag(:div, :class=> current_class?(user_path(current_user))){
+              link_to "Perfil", current_user, class: "nav-item nav-link"
+        }%>
+        <li>  
+           <%= link_to "Sair", logout_path, class: "nav-item nav-link", 
+                method: :delete%>
+        </li>        
+        </ul>
+    </div>
+</div>
+</div>
+<% end %>

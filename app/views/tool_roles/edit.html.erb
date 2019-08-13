@@ -1,0 +1,43 @@
+<% provide(:title, 'Editar permissões') %>
+
+<center><h2><%= @tool_role.role.name %></h2></center>
+<div class="container-fluid">
+<%= form_with(model: @tool_role, local: true) do |f| %>
+    <center>
+      <div class="form-check form-check-inline">
+
+      	<div style="padding-right: 2rem">
+        	<strong>
+        		<%= f.label @tool_role.tool.name, class: "form-check-label"%>	
+        	</strong>
+        	<%= f.hidden_field :tool_id, value: @tool_role.tool.id, class: "form-check-label"%>
+        </div>
+
+        
+        <%= f.label :criar, class: "form-check-label" %>
+        <div style="padding-right: 2rem">
+       		<%= f.check_box :criar, class: "form-check-input" %>
+    	</div>
+
+    	
+        <%= f.label :ler, class: "form-check-label" %>
+        <div style="padding-right: 2rem">
+        	<%= f.check_box :ler,  class: "form-check-input" %>
+    	</div>
+
+    	
+       	<%= f.label :atualizar, class: "form-check-label" %>
+       	<div style="padding-right: 2rem">
+        	<%= f.check_box :atualizar, class: "form-check-input" %>
+    	</div>
+
+    	
+        <%= f.label :deletar, class: "form-check-label" %>
+        <div style="padding-right: 2rem">
+        	<%= f.check_box :deletar, class: "form-check-input" %>
+    	</div>
+        <%= f.submit "atualizar", class: "btn btn-success btn-block" %>
+    	</div>
+    </center>
+<% end %>
+</div>

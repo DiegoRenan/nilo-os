@@ -1,0 +1,28 @@
+<% provide(:title, 'Empresas') %>
+
+<div class="row align-items-center">
+    <% @companies.each do |company| %>
+        <div class="col-8">
+          <%=link_to company.name, company %>
+        </div>
+        <% if current_user.admin? %>
+          <div class="col-2">
+            <%= link_to 'Editar', edit_company_path(company) %>
+          </div>
+          <div class="col-2">
+            <%= link_to 'Deletar', company, method: :delete, data: { confirm: "Deletar #{company.name}"} %>
+          </div>
+
+        <%end%>
+      <div class="container-fluid">
+        <div class="container-fluid col-12 line"></div>
+      </div>
+    <% end %>
+</div>
+
+<br>
+
+<br>
+<% if current_user.admin? %>
+<%= link_to 'Nova Empresa', new_company_path, class: "btn btn-success btn-block btn-float-bottom" %>
+<% end %>

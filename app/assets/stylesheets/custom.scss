@@ -1,0 +1,187 @@
+@import "bootstrap";
+
+
+body{
+  font-size: 1vw;
+}
+
+main{
+	display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.content{
+	padding-top: 2rem; 
+	width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.right{
+  float: right;
+}
+
+.left{
+  float: left;
+}
+
+#sidebar{
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    transition: all 0.0s;
+  @inculde blue-gradient;
+
+  .navbar-nav{
+    display:inline-block !important;
+  } 
+}
+
+@media(maz-width:768px){
+  #sidebar{margin-left: -250px;}
+  #sidebar.active{
+    margin-left: 0px;
+  }
+  #sidebarCollapse span{
+    display: none;
+  }
+}
+
+.line{
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+/*#########################################################
+#                            HEADER                      #
+###########################################################*/
+#header{
+  width: 100%;
+}
+
+#header ul li {
+  a:hover{
+    border-bottom: 1px #000 solid !important;
+  }
+
+}
+
+#header .active{
+  border-bottom: 1px #000 solid !important;
+}
+
+.bg-custom{
+  background-color: #FFFFFF;
+  z-index: 100px;
+}
+
+.shadow{
+  -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+/*#########################################################
+#                            PAGE HEADER                  #
+###########################################################*/
+
+#pageheader{
+  border-radius: 5px 5px 5px 5px;
+  margin-top: 1rem;
+  clear: both;
+}
+
+/*##########################################################
+#                            LOGIN                        #
+###########################################################*/
+
+@mixin blue-gradient{
+  background: #4CCEB2; /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(#4CCEB2, #2F8FD8); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#4CCEB2, #2F8FD8); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#4CCEB2, #2F8FD8); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#4CCEB2, #2F8FD8); /* Standard syntax */
+}
+
+#login-form{
+  padding-top: 10vh;
+}
+
+#applogin{
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 10vh;
+  @include blue-gradient;
+}
+
+/*#########################################################
+#                            IMAGES ICON                  #
+###########################################################*/
+
+.img-icon{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.img-preview{
+  max-width: 40rem;
+}
+
+/*#########################################################
+#                            FOOTER                      #
+###########################################################*/
+
+footer{
+  padding-top: 6rem;
+}
+
+
+
+/*###########################################################
+#							FLASH MESSAGES							  #
+###########################################################*/
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+	
+  .form-control {
+    color: red;
+  }
+}
+
+/*###########################################################
+#							USERS							  #
+###########################################################*/
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px;
+    border-bottom: 1px solid #CECECE;
+  }
+}
+
+/*##########################################################
+#                            BUTTON                        #
+###########################################################*/
+.btn-float-bottom-1{
+ position: fixed;
+ bottom: 5rem;
+ z-index: 1; 
+}
+
+.btn-float-bottom{
+ position: fixed;
+ bottom: 2rem;
+ z-index: 1; 
+}

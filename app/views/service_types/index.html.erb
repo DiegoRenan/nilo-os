@@ -1,0 +1,26 @@
+<% provide(:title, 'Tipos de Serviço') %>
+
+<div class="row align-items-center">
+    <% @service_types.each do |service_type| %>
+        <div class="col-8">
+          <%=link_to service_type.title, service_type %>
+        </div>
+        <% if current_user.admin? %>
+          <div class="col-2">
+            <%= link_to 'Editar', edit_service_type_path(service_type) %>
+          </div>
+          <div class="col-2">
+            <%= link_to 'Deletar', service_type, method: :delete, data: { confirm: "Deletar #{service_type.title}?" } %>
+          </div>
+
+          <div class="container-fluid">
+            <div class="container-fluid col-12 line"></div>
+          </div>
+
+        <%end%>
+    <% end %>
+</div>
+<br>
+<% if current_user.admin? %>
+<%= link_to 'Novo Tipo de Serviço', new_service_type_path, class: "btn btn-success btn-block btn-float-bottom" %>
+<% end %>

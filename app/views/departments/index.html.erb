@@ -1,0 +1,30 @@
+<% provide(:title, 'Departamentos') %>
+
+<div class="row align-items-center">
+    <% @departments.each do |department| %>
+        <div class="col-8">
+          <%=link_to department.name, department %>
+        </div>
+        <% if current_user.admin? %>
+          <div class="col-2">
+            <%= link_to 'Editar', edit_department_path(department) %>
+          </div>
+          <div class="col-2">
+            <%= link_to 'Deletar', department, method: :delete, data: { confirm: "Deletar #{department.name}?" } %>
+          </div>
+        <% else %>
+          <div class="col-4"></div>
+        <%end%>
+
+        <div class="container-fluid">
+          <div class="container-fluid col-12 line"></div>
+        </div>
+
+    <% end %>
+</div>
+
+<br>
+
+<% if current_user.admin? %>
+<%= link_to 'Novo Departamento', new_department_path, class: "btn btn-success btn-block btn-float-bottom" %>
+<% end %>

@@ -1,0 +1,98 @@
+<% provide(:title, 'Atualizar Usuário') %>
+
+<div class="row">
+  <div class="col-md-12 col-md-offset-12">
+    	<%= form_for(@user) do |f| %>
+    	
+	    	<%= render 'shared/error_messages', object: f.object %>
+
+	  		<div class="container">
+			    <div class="row">
+			      	<div class="col-4">
+		        		<span class="picture">
+							<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', 
+								class: "btn btn-default", 
+								:onchange => "readURL(this)"  %>
+						</span>
+					</div>
+					<div class="col-6">
+			        	<img id="img_prev" src="#" alt="your image" class="img-icon"/>
+			      	</div>
+			    </div>
+			</div>
+			<br />
+			
+			<div class="form-group">
+	      		<label>Nome: </label>
+	      		<%= f.text_field :name,  class: "form-control "  %>
+	    	</div>
+
+		    <div class="form-group">
+		      <labe>Nickname: </labe><strong><%= @user.username %></strong>
+		      <%= f.hidden_field :username, value: @user.username, class: "form-control"  %>
+		    </div>
+
+		    <div class="form-group">
+		      <labe>Email: </labe><strong><%= @user.email %></strong>
+		      <%= f.hidden_field :email, value: @user.email, class: "form-control"  %>
+		    </div>
+
+		    <% if current_user.admin? %>
+			    <div class="form-group">
+				    <label>Nivel de Acesso:*</label>
+
+				    <% c_array = Role.all.map { |c| [c.name, c.id] } %>
+				    <%= f.select(:role_id, options_for_select(c_array), {prompt: 'Selecione...'},{class: "form-control"}) %>
+
+				</div>
+
+				<div class="form-group">
+				    <strong>Empresa:*</strong>
+				    
+				    <% c_array = Company.all.map { |c| [c.name, c.id] } %>
+				    
+				    <%= f.select(:company_id, options_for_select(c_array),{prompt: 'Selecione...'}, {class: "form-control"} ) %>
+				</div>
+		    
+		   
+			    <div class="form-group">
+				    <label>Departamento:*</label>
+				    
+				    <% c_array = Department.all.map { |c| [c.name, c.id] } %>
+				    
+				    <%= f.select(:department_id, options_for_select(c_array),{prompt: 'Selecione...'}, {class: "form-control", :onchange => "send(value, '/sectors_by_department')"} ) %>
+				</div>
+
+				<div class="form-group">
+				    <label>Setor:*</label>
+
+				    <% c_array = Sector.all.map { |c| [c.name, c.id] } %>
+				    <%= f.select(:sector_id, options_for_select(c_array), {prompt: 'Selecione...'},{class: "form-control"}) %>
+
+				</div>
+
+			<% end %>
+
+		    <div class="form-group">
+		      <label>Senha</label>
+		      <%= f.password_field :password, class: "form-control"  %>
+		    </div>
+
+		    <div class="form-group">
+		      <label>Confirmar a senha</label>
+		      <%= f.password_field :password_confirmation, class: "form-control"  %>
+		    </div>
+		    <br/>
+		    <%= f.submit "Atualizar", class: "btn btn-success btn-block" %>
+		<% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#user_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

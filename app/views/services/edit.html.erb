@@ -1,0 +1,85 @@
+<% provide(:title, "Editar Chamado") %>
+<%= form_for(@service) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <strong>Assunto*</strong>
+    <h2><%= @service.title %></h2>
+    <%= f.hidden_field :title, class: "form-control"%>
+  </div>
+  
+  <div class="form-group">
+    <strong>Status*</strong>
+    <% c_array = ServiceStatus.all.map { |c| [c.status, c.id] } %>
+    <%= f.select(:service_status_id, options_for_select(c_array), {prompt: 'Selecione...'},{class: "form-control"}) %>
+  </div>
+
+
+
+  <div class="form-group">
+    <strong>Para qual Empresa?*</strong>
+    
+    <% c_array = Company.all.map { |c| [c.name, c.id] } %>
+    
+    <%= f.select(:company_id, options_for_select(c_array),{prompt: 'Selecione...'}, {class: "form-control"} ) %>
+   </div>
+
+  <div class="form-group">
+    <strong>Para qual departamento?*</strong>
+    
+    <% c_array = Department.all.map { |c| [c.name, c.id] } %>
+    
+    <%= f.select(:department_id, options_for_select(c_array),{prompt: 'Selecione...'}, {class: "form-control", :onchange => "send(value, '/sectors_by_department')"} ) %>
+   </div>
+
+  <div class="form-group">
+    <strong>Para qual Setor?*</strong>
+
+    <% c_array = Sector.all.map { |c| [c.name, c.id] } %>
+    <%= f.select(:sector_id, options_for_select(c_array), {prompt: 'Selecione...'},{class: "form-control"}) %>
+
+  </div>
+
+  <div class="form-group">
+    <strong>Tipo do Serviço*</strong>
+    <% c_array = ServiceType.all.map { |c| [c.title, c.id] } %>
+
+    <%= f.select(:service_type_id, options_for_select(c_array),{prompt: 'Selecione...'}, {class: "form-control"} ) %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.hidden_field :body, class: "form-control" %></p>
+  </div>
+
+  <div class="form-group">
+    <%= f.hidden_field :user_id, value: @service.user_id %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.submit "Atualizar", class: "btn btn-success btn-block"%>
+  </div>
+<% end %>
+ 
+<br/>
+<% if current_user.admin? || user_allowed?(current_user, "atualizar") %>
+  <div class="form-group">
+        <strong>Delegar para: </strong>
+        <%= render 'responsibles/responsible'%>   
+  </div>
+  <div class="card">
+  <div class="card-body" style="background: #DCDCDC">
+      <div class="row">
+        <%= render 'services/status' %>
+      </div>
+  </div>
+  <div class="card-header" >
+    <div class="row">
+      <%= render 'services/service' %>
+    </div>
+  </div>
+  </div>
+  <br/>
+<%end%>
+
+

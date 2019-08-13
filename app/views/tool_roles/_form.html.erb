@@ -1,0 +1,37 @@
+<% @tools.each do |tool| %>
+  <%= form_with(model: [ @role, @role.tool_roles.build ], local: true) do |f| %>
+    <p>
+      <div class="form-check form-check-inline">
+        <div style="padding-right: 2rem">
+          <strong><%= f.label tool.name, class: "form-check-label"%></strong>
+          <%= f.hidden_field :tool_id, value: tool.id, class: "form-check-label"%>
+        </div>
+        
+        <%= f.label :criar, class: "form-check-label" %>
+          <div style="padding-right: 2rem">
+            <%= f.check_box :criar, class: "form-check-input" %>
+        </div>
+
+    
+        <%= f.label :ler, class: "form-check-label" %>
+        <div style="padding-right: 2rem">
+            <%= f.check_box :ler,  class: "form-check-input" %>
+        </div>
+
+    
+        <%= f.label :atualizar, class: "form-check-label" %>
+        <div style="padding-right: 2rem">
+          <%= f.check_box :atualizar, class: "form-check-input" %>
+        </div>
+
+      
+        <%= f.label :deletar, class: "form-check-label" %>
+        <div style="padding-right: 2rem">
+            <%= f.check_box :deletar, class: "form-check-input" %>
+        </div>
+        
+         <%= f.submit "Adicionar", class: "btn btn-success btn-block btn-sm" %>
+      </div>
+    </p>
+  <% end %>
+<% end %>

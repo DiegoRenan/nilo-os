@@ -1,0 +1,50 @@
+<div class="row">
+  
+  <div class="col-4">
+    <h1><%= @service.id %></h1>
+  </div>
+
+  <div class="col-8">
+    <h1><%= @service.title %></h1>
+  </div>
+</div>
+
+<br/>
+<% if current_user.admin? || user_allowed_controller?(current_user,"responsibles", "criar")%>
+<div class="form-group">
+      <strong>Delegar para: </strong>
+      <%= render 'responsibles/responsible'%>   
+</div>
+<%end%>
+
+<br/>
+
+<div class="card">
+    <div class="card-body" style="background: #DCDCDC">
+        <div class="row">
+          <%= render 'services/status' %>
+        </div>
+    </div>
+    <div class="card-header" >
+      <div class="row">
+        <%= render 'services/service' %>
+      </div>
+    </div>
+</div>
+<br/>
+
+<%= render 'comments/comment' %>
+
+<div class="row">
+  <%= render 'comments/form' %>
+</div>
+
+<div class="container-fluid">
+<% if @service.service_status.id != status_fechado.id %>
+    <% if @service.service_status.id != status_aguardando_aprovacao.id || current_user.admin?%>
+     
+        <%= link_to 'Fechar', {} ,{id: @service.id, class: "btn btn-danger btn-block btn-float-bottom", :onclick => "send(id, '/finalizar_chamado')"} %>
+
+    <% end %>
+<% end %>
+</div>

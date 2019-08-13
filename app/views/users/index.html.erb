@@ -1,0 +1,39 @@
+<% provide(:title, 'Usuários') %>
+
+<div class="row">
+  <% @users.each do |user|  %>
+      <div class="col-4">
+      	<span>
+            <% if user.picture? %>
+        			<%= image_tag user.picture.url, size: 50 %>
+        		<%end%>
+        </span>
+      </div>
+
+      <div class="col-4">
+       	<%= link_to user.name, user %>
+      </div>
+
+      <div class="col-2">
+          <% if current_user.admin? %>
+            <%= link_to "Editar", edit_user_path(user) %>
+          <%end%>
+      </div>
+
+      <div class="col-2">
+          <% if current_user.admin? && !current_user?(user) %>
+            <%= link_to "delete", user, 
+                                  method: :delete,
+                                  data: { confirm: "Deletar #{user.name}?" } %>
+          <% end %>
+      </div>
+      <div class="container">
+        <div class="container col-12 line"></div>
+      </div>
+  <% end %>
+</div>
+<br />
+
+<% if current_user.admin? %>
+  <%= link_to 'Novo usuário', new_user_path, class: "btn btn-success btn-block btn-float-bottom" %>
+<% end %>
