@@ -1,10 +1,7 @@
 default: &default
- adapter: mysql2
- encoding: utf8
- pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
- username: admin
- password: root
- host: localhost
+  adapter: postgresql
+  encoding: unicod
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
  
 development:
  <<: *default
@@ -15,9 +12,7 @@ test:
  database: nilo-os_test
 
 production:
-  secret_key_base: <%= Rails.application.credentials.secret_key_base %>
-  adapter: mysql2
-  encoding: utf8
-  database: nilo
-  username: root
-  password: <%= Rails.application.credentials.db_key %>
+  <<: *default
+  database: nilo_production
+  username: nilo
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
