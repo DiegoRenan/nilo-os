@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Service Attachments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Picture</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @service_attachments.each do |service_attachment| %>
+      <tr>
+        <td><%= service_attachment.service_id %></td>
+        <td><%= service_attachment.picture %></td>
+        <td><%= link_to 'Show', service_attachment %></td>
+        <td><%= link_to 'Edit', edit_service_attachment_path(service_attachment) %></td>
+        <td><%= link_to 'Destroy', service_attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Service Attachment', new_service_attachment_path %>

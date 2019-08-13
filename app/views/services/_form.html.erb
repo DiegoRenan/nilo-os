@@ -1,4 +1,4 @@
-<%= form_with(model: @service, local: true) do |f| %>
+<%= form_with(model: @service, local: true, :html => { :multipart => true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group">
@@ -50,17 +50,16 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
 
-
-  <span class="picture">
-    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "btn btn-default", :onchange => "readURL(this)"  %>
-  </span>
+  <%= f.fields_for :service_attachments do |p| %>
+    <span class="picture">
+      <%= f.file_field :picture, :multiple => true, class: "btn btn-default", 
+      name: "service_attachments[picture][]", :onchange => "readURL(this)"  %>
+    </span>
+  <% end %>
   
-
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <img id="img_prev" src="#" alt="your image" class="img-preview"/>
-      </div>
+    <div class="row" id="attachments">
+      
     </div>
   </div>
   <br />

@@ -5,21 +5,22 @@ class ServicesController < ApplicationController
   before_action :user_admin, only: [:edit, :update, :destroy]
 
   def index
-	    if current_user.admin? || user_tecnico? || user_allowed?(current_user, "atualizar")
+	    if current_user.admin? || current_user.role.name == "master"
         @services = Service.all.order('id DESC')
       else
         @services = current_user.services.all
-        @services += Service.where(user_id: current_user.id).all.where.not(id: @services).all
-        @services = @services.sort_by{|id|}.reverse
+        @services += Service.where(user_id: current_user.id).all.where.not(id: @services).where(department_id: current_user.department_id).sort_by{|id|}.reverse
       end
   end
   
   def new
   	@service = Service.new
+    @service_attachment = @service.service_attachments.build
   end
 
   def show
     @responsible = Responsible.new
+    @service_attachments = @service.service_attachments.all
     @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"} || Users.all
   end
 
@@ -32,6 +33,9 @@ class ServicesController < ApplicationController
   	@service = Service.new(service_params)
     @users = User.all.where.not(id: vinculados(@service)).reject {|user| user.email == "suporte@suporte.com"}
   	if @service.save
+      params[:service_attachments]['picture'].each do |a|
+          @service_attachment = @service.service_attachments.create!(:picture => a, :service_id => @service.id)
+      end
     	flash[:success] = "Ordem de serviço #{@service.id} criado"
     	redirect_to @service
   	else
@@ -115,7 +119,8 @@ class ServicesController < ApplicationController
 
   	def service_params
       params.require(:service).permit(:title, :body, :picture, :department_id, :sector_id, 
-        :service_status_id, :service_type_id, :user_id, :company_id)
+        :service_status_id, :service_type_id, :user_id, :company_id, service_attachments_attributes: 
+        [:id, :service_id, :picture])
     end
 
     def set_service
@@ -141,6 +146,5 @@ class ServicesController < ApplicationController
     def user_admin
         redirect_to services_path unless current_user.admin? || user_allowed?(current_user, convert_action_name)
     end
-
 
 end

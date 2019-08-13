@@ -11,10 +11,9 @@
 // about supported directives.
 //
 //= require jquery3
-//= require jquery_ujs
+//= require rails-ujs
 //= require popper
 //= require bootstrap
-//= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
@@ -26,8 +25,12 @@ function readURL(input) {
           var reader = new FileReader();
 
           reader.onload = function (e) {
-            $('#img_prev')
-              .attr('src', e.target.result)
+            $('#attachments')
+              .append(` 
+              <div class='col'>
+                  <img src='`+ e.target.result +`' alt='your image' class='left img-preview mx-auto d-block img-thumbnail'/>
+              </div>`)
+             
           };
 
           reader.readAsDataURL(input.files[0]);
@@ -54,3 +57,5 @@ function append(){
     }
   });
 }
+
+$('.carousel').carousel('pause');

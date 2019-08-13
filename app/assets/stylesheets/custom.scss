@@ -31,7 +31,6 @@ main{
     max-width: 250px;
     height: 100vh;
     transition: all 0.0s;
-  @inculde blue-gradient;
 
   .navbar-nav{
     display:inline-block !important;
@@ -125,7 +124,7 @@ main{
 }
 
 .img-preview{
-  max-width: 40rem;
+  max-width: 20rem;
 }
 
 /*#########################################################
@@ -136,7 +135,19 @@ footer{
   padding-top: 6rem;
 }
 
+/*#########################################################
+#                            CAROUSEL                     #
+###########################################################*/
 
+#carouselExampleIndicators {
+  max-width: 50rem;
+  height: auto;
+}
+
+.carousel-img {
+  max-width: 100%;
+  height: auto;
+}
 
 /*###########################################################
 #							FLASH MESSAGES							  #

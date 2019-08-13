@@ -13,6 +13,10 @@ class Service < ApplicationRecord
   has_many :services_status_aberto, -> { where(status: "ABERTO") }, class_name: 'ServiceStatus'
 
   mount_uploader :picture, PictureUploader
+  
+  has_many :service_attachments
+  accepts_nested_attributes_for :service_attachments
+
   validates :title, presence: true, length: { minimum: 6 }
   validates :body, presence: true, length: { minimum: 6 }
 

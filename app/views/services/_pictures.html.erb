@@ -1,0 +1,42 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="">
+  
+  <ol class="carousel-indicators">
+     <% if !service.service_attachments.first.nil? %>
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+     <% end %>
+    <% service.service_attachments.each_with_index do |attach, index| %>
+      <%if service.service_attachments.first.picture.url != attach.picture.url %> 
+        <%= content_tag(:li, :'data-target'=> "#carouselExampleIndicators", :"data-slide-to"=> "#{index}") %>
+      <% end %> 
+    <% end %>
+  </ol>
+  
+  <div class="carousel-inner">
+  
+    <div class="carousel-item active">
+      <% if !service.service_attachments.first.nil? %>
+          <%= image_tag service.service_attachments.first.picture.url, class:"d-block carousel-img" %>
+      <% end %>
+    </div>
+
+    <% service.service_attachments.each do |attach| %>
+        <%if service.service_attachments.first.picture.url != attach.picture.url %>
+            <div class="carousel-item">
+                  <%= image_tag attach.picture.url, class:"d-block carousel-img" %>
+            </div>
+        <% end %>
+    <% end %>
+
+  </div>
+  
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Voltar</span>
+  </a>
+
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Avançar</span>
+  </a>
+
+</div>

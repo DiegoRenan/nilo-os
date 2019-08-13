@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @service_attachment.service_id %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= @service_attachment.picture %>
+</p>
+
+<%= link_to 'Edit', edit_service_attachment_path(@service_attachment) %> |
+<%= link_to 'Back', service_attachments_path %>

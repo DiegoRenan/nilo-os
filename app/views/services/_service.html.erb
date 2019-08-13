@@ -9,4 +9,6 @@
     <% if @service.picture? %>
         <center><%= image_tag @service.picture.url, width: "500rem" %></center>
     <%end%>
+    <%= render 'pictures', service: @service  %>
   </div>
+

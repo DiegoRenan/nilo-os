@@ -1,4 +1,5 @@
 Rails.application.routes.draw do 	
+  resources :service_attachments
 	  root 'sessions#new'
   	resources :users
   	resources :areas
