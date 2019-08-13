@@ -1,24 +1,66 @@
 
-if !Department.exists?(name: "ADMINISTRADOR")
-	Department.create!(name: "ADMINISTRADOR")
+if !Company.exists?(name: "MATRIZ")
+      puts "1 - Creating Company MATRIZ."
+	Company.create!(name: "MATRIZ")
 end
 
-if !Sector.exists?(name: "ADMINISTRADOR")
-	Sector.create!(name: "ADMINISTRADOR",
-				   department_id: 1)
+@company_matriz = Company.where(name: 'MATRIZ').first
+
+if !Department.exists?(name: "ADMINISTRAÇÃO")
+      puts "2 - Creating Department ADMINISTRAÇÃO."
+	Department.create!(name: "ADMINISTRAÇÃO")
 end
 
-if !User.exists?(email: 'suporte@suporte.com')
-	User.create!(name:  "Suporte",
-             email: "suporte@suporte.com",
-             username: "suporte",
+@department_administração = Department.where(name: 'ADMINISTRAÇÃO').first
+
+if !Sector.exists?(name: "ADM")
+      puts "3 - Creating sector ADM < ADMINISTRAÇÃO"
+	Sector.create!(name: "ADM",
+				   department_id: @department_administração.id)
+end
+
+@sector_adm = Sector.where(name:'ADM').first
+
+
+########################################################################
+#                              ROLE                                   #
+########################################################################
+
+if !Role.exists?(name: 'administrador')
+      puts "4 - Creating role administrador"
+      Role.create!(name: 'administrador')
+end
+
+@role_administrador = Role.where(name: 'administrador').first
+
+if !Role.exists?(name: "usuário")
+      Role.create!(name: "usuário")
+end
+
+if !Role.exists?(name: "técnico")
+      Role.create!(name: "técnico")
+end
+
+########################################################################
+#                              USER ADMIN                              #
+########################################################################
+
+if !User.exists?(email: 'adm@minhaempresa.com')
+      puts "5 - Creating user Administrador"
+	User.create!(name:  "Administrador",
+             email: "adm@minhaempresa.com",
+             username: "Adm",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
-             department_id: 1,
-             sector_id: Sector.first.id)
+             department_id: @department_administração.id,
+             sector_id: @sector_adm.id,
+             company_id: @company_matriz.id,
+             role_id: @role_administrador.id
+            )
 end
 
+puts "6 - Creating Service status"
 if !ServiceStatus.exists?(status: "ABERTO")
 	ServiceStatus.create!(status:  "ABERTO")
 end
@@ -40,6 +82,7 @@ end
 #                              TOOLS                                   #
 ########################################################################
 
+puts "7 - Creating tools"
 if !Tool.exists?(controller: "services")
      Tool.create!(name: "Tickets",
                          controller: "services")
@@ -56,21 +99,11 @@ if !Tool.exists?(controller: "responsibles")
 end
 
 ########################################################################
-#                              ROLE                                   #
-########################################################################
-if !Role.exists?(name: "usuário")
-      Role.create!(name: "usuário")
-end
-
-if !Role.exists?(name: "técnico")
-      Role.create!(name: "técnico")
-end
-
-########################################################################
 #                              TOOL ROLE                               #
 ########################################################################
 
 ###### usuário #################
+puts "8 - Creating Tool Role"
 @role_id = Role.where(name: "usuário").take.id
 @tool_id = Tool.where(controller: "services").take.id
 

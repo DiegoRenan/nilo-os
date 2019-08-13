@@ -3,12 +3,12 @@ class User < ApplicationRecord
 	mount_uploader :picture, PictureUploader
 
 	belongs_to :department
-  	belongs_to :sector
-  	belongs_to :role
-  	belongs_to :company
+  belongs_to :sector
+  belongs_to :role
+  belongs_to :company
   	
-  	has_many :responsibles
-  	has_many :services
+  has_many :responsibles
+  has_many :services
 	has_many :services, :through => :responsibles
 	has_many :comments
 
