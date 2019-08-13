@@ -11,7 +11,7 @@ if !Department.exists?(name: "ADMINISTRAÇÃO")
 	Department.create!(name: "ADMINISTRAÇÃO")
 end
 
-@department_administração = Department.where(name: 'ADMINISTRAÇÃO').first
+@department_administração = Department.where(name: 'ADMINISTRAÇÃO').take
 
 if !Sector.exists?(name: "ADM")
       puts "3 - Creating sector ADM < ADMINISTRAÇÃO"
@@ -19,7 +19,7 @@ if !Sector.exists?(name: "ADM")
 				   department_id: @department_administração.id)
 end
 
-@sector_adm = Sector.where(name:'ADM').first
+@sector_adm = Sector.where(name:'ADM').take
 
 
 ########################################################################
